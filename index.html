@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>AVRA LUXURY | Boutique Officielle</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -645,12 +645,10 @@
 </head>
 <body>
 
-<!-- PROMO BAR -->
 <div class="promo-bar">
     ⚡ VENTE FLASH : <span>-10%</span> SUR TOUTE LA BOUTIQUE AVEC LE CODE <span>AVRA10</span> ⚡
 </div>
 
-<!-- SHIPPING BAR -->
 <div class="shipping-bar-wrap">
     <span id="shipping-promo-text">Plus que <strong id="shipping-needed">10,01€</strong> pour débloquer la <strong>Livraison Gratuite</strong></span>
     <div style="width:80px;height:6px;background:#ddd;border-radius:3px;overflow:hidden;display:inline-block;">
@@ -658,7 +656,6 @@
     </div>
 </div>
 
-<!-- NAV -->
 <nav class="main-nav">
     <div class="hamburger" onclick="openMobileMenu()">
         <span></span><span></span><span></span>
@@ -683,7 +680,6 @@
     </div>
 </nav>
 
-<!-- MOBILE MENU -->
 <div id="mobileMenu" onclick="closeMobileMenuOnOverlay(event)">
     <div id="mobileMenuPanel">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
@@ -701,20 +697,17 @@
     </div>
 </div>
 
-<!-- HOME PAGE -->
 <div id="homePage">
-    <!-- HERO -->
     <div id="home-hero">
         <img src="banniere-accueil.jpg" alt="AVRA LUXURY" class="hero-bg">
         <div class="hero-content">
-            <div class="hero-badge">Collection Exclusive 2025</div>
+            <div class="hero-badge">Collection Exclusive 2026</div>
             <div class="hero-title">AVRA <span>LUXURY</span></div>
             <div class="hero-sub">Édition Premium — Style & Élégance</div>
             <div class="hero-code">— 10% | CODE : AVRA10</div>
         </div>
     </div>
 
-    <!-- COLLECTIONS -->
     <div id="home-collections">
         <div class="collections-grid">
             <div class="collection-card" onclick="filterCategory('chaussures')">
@@ -733,7 +726,6 @@
     </div>
 </div>
 
-<!-- CATALOGUE -->
 <section id="catalogue-section" class="py-16 px-4">
     <div class="catalogue-header">
         <p class="catalogue-eyebrow">Sélection Exclusive</p>
@@ -745,7 +737,6 @@
     <div id="products-grid"></div>
 </section>
 
-<!-- PRODUCT PAGE -->
 <div id="productPage">
     <div style="max-width:1100px;margin:0 auto;padding:20px 16px 8px;">
         <button class="back-btn" onclick="closeProductPage()">← Retour aux produits</button>
@@ -758,34 +749,27 @@
             <p class="product-page-category" id="pp-category"></p>
             <h1 class="product-page-name" id="pp-name"></h1>
             <p class="product-page-price" id="pp-price"></p>
-
             <div class="stock-indicator">
-                <span class="stock-dot"></span>
-                En stock — Expédition sous 24-48h
+                <span class="stock-dot"></span> En stock — Expédition sous 24-48h
             </div>
-
             <div>
                 <p class="size-label" id="pp-size-label">TAILLE</p>
                 <div class="size-grid" id="pp-sizes"></div>
             </div>
-
             <div class="trust-badges">
                 <div class="trust-badge"><i class="fa-solid fa-rotate-left"></i> Retour 14 jours</div>
                 <div class="trust-badge"><i class="fa-solid fa-truck"></i> Livraison offerte dès 150€</div>
                 <div class="trust-badge"><i class="fa-solid fa-medal"></i> Qualité Premium</div>
             </div>
-
             <button class="btn-add-cart" onclick="addToCartFromPage()">
                 <i class="fa-solid fa-bag-shopping" style="margin-right:8px;"></i>Ajouter au panier
             </button>
-            <a id="pp-buy-link" href="#" target="_blank" class="btn-buy-now">
-                <i class="fa-solid fa-lock" style="margin-right:8px;"></i>Acheter — Paiement sécurisé
-            </a>
-
+            <button class="btn-buy-now" onclick="buyNowFromPage()">
+                <i class="fa-solid fa-lock" style="margin-right:8px;"></i>Acheter immédiatement
+            </button>
             <div class="secure-payment">
                 <div class="secure-title">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    Paiement 100% sécurisé & chiffré
+                    <i class="fa-solid fa-shield-halved"></i> Paiement 100% sécurisé & chiffré
                 </div>
                 <div class="secure-icons">
                     <span class="secure-icon stripe">STRIPE</span>
@@ -800,7 +784,6 @@
     </div>
 </div>
 
-<!-- REVIEWS -->
 <section id="home-reviews" style="display:none;">
     <div style="max-width:680px;margin:0 auto;">
         <h2 class="review-title">Nos clients en parlent</h2>
@@ -817,8 +800,7 @@
     </div>
 </section>
 
-<!-- FOOTER -->
-<footer id="main-footer" style="display:none;">
+<footer id="main-footer">
     <div class="footer-grid">
         <div>
             <p class="footer-title">Menu</p>
@@ -842,10 +824,9 @@
             </div>
         </div>
     </div>
-    <div class="footer-copy">© 2025 AVRA LUXURY. Tous droits réservés.</div>
+    <div class="footer-copy">© 2026 AVRA LUXURY. Tous droits réservés.</div>
 </footer>
 
-<!-- CART SIDEBAR -->
 <div id="cartSidebar">
     <div class="cart-header">
         <h3><i class="fa-solid fa-bag-shopping" style="margin-right:8px;color:var(--gold);"></i>Mon Panier</h3>
@@ -857,413 +838,292 @@
             <span>SOUS-TOTAL</span>
             <span id="cart-total-price">0,00€</span>
         </div>
-        <p id="cart-multi-notice" style="display:none;font-size:11px;color:#d97706;background:#fef3c7;padding:10px;border-radius:6px;margin-bottom:8px;">
-            ⚠️ Redirection vers le paiement du 1er article. Revenez valider les suivants.
-        </p>
-        <button class="btn-checkout" id="checkout-main-btn" onclick="processCheckout()">
-            <i class="fa-solid fa-lock" style="margin-right:6px;"></i>Passer la commande
-        </button>
-        <p style="font-size:10px;color:#aaa;text-align:center;margin-top:8px;"><i class="fa-solid fa-shield-halved" style="color:var(--gold);margin-right:4px;"></i>Paiement sécurisé SSL — Stripe</p>
+        <button class="btn-checkout" onclick="alert('Passage en caisse sécurisé...')">Passer la commande</button>
     </div>
 </div>
 <div id="cartOverlay" onclick="toggleCart()"></div>
 
-<!-- LOGIN MODAL -->
-<div class="modal-overlay" id="loginModal">
-    <div class="modal-box" style="text-align:center;">
+<div id="loginModal" class="modal-overlay">
+    <div class="modal-box">
         <button class="modal-close" onclick="closeLoginModal()">&times;</button>
-        <div style="width:52px;height:52px;background:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
-            <i class="fa-solid fa-user" style="color:var(--gold);font-size:20px;"></i>
-        </div>
-        <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:4px;">Espace Client</h3>
-        <p style="font-size:11px;color:#aaa;margin-bottom:22px;">Suivez vos commandes et livraisons</p>
-        <button onclick="simulateGoogleLogin()" style="width:100%;border:1.5px solid #e0e0e0;background:#fff;border-radius:10px;padding:12px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;font-size:13px;font-weight:500;color:#333;transition:background 0.2s;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">
-            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5.04c1.65 0 3.13.57 4.3 1.69l3.21-3.21C17.55 1.7 15 1 12 1 7.37 1 3.4 3.67 1.48 7.57l3.77 2.92C6.14 7.04 8.84 5.04 12 5.04z"/><path fill="#4285F4" d="M23.45 12.27c0-.82-.07-1.61-.21-2.38H12v4.51h6.42c-.28 1.47-1.11 2.72-2.36 3.56l3.67 2.85c2.14-1.98 3.38-4.89 3.38-8.54z"/><path fill="#FBBC05" d="M5.25 14.65c-.25-.73-.39-1.51-.39-2.33s.14-1.6.39-2.33L1.48 7.57C.54 9.47 0 11.62 0 12s.54 2.53 1.48 4.43l3.77-2.92z"/><path fill="#34A562" d="M12 23c3.24 0 5.97-1.08 7.96-2.92l-3.67-2.85c-1.02.68-2.33 1.09-3.92 1.09-3.16 0-5.86-2-6.75-4.91L1.48 16.33C3.4 20.33 7.37 23 12 23z"/></svg>
-            Se connecter avec Google
-        </button>
-        <p style="font-size:10px;color:#ccc;margin-top:14px;">Connexion sécurisée via Google Accounts</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;text-align:center;margin-bottom:20px;text-transform:uppercase;letter-spacing:0.1em;">Espace Client</h3>
+        <input type="email" placeholder="Adresse e-mail" style="width:100%;padding:11px 14px;border:1px solid #ddd;border-radius:8px;margin-bottom:12px;font-size:13px;outline:none;">
+        <input type="password" placeholder="Mot de passe" style="width:100%;padding:11px 14px;border:1px solid #ddd;border-radius:8px;margin-bottom:16px;font-size:13px;outline:none;">
+        <button class="btn-buy-now" style="width:100%;" onclick="alert('Connexion en cours...')">Se connecter</button>
     </div>
 </div>
 
-<!-- LEGAL MODAL -->
-<div class="modal-overlay" id="legalModal">
+<div id="legalModal" class="modal-overlay">
     <div class="modal-box legal-modal-box">
         <button class="modal-close" onclick="closeLegalModal()">&times;</button>
-        <h3 id="legalModalTitle" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--black);"></h3>
+        <h3 id="legalModalTitle" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.1em;"></h3>
         <div id="legalModalContent" class="legal-content"></div>
     </div>
 </div>
 
-<!-- TOAST -->
 <div id="toast"></div>
 
 <script>
-// ─── DONNÉES PRODUITS ───────────────────────────────────────────────────────
-const productsData = {
-    pradaAmericasCup: { name: "Prada America's Cup - Black Leather", price: 169.99, img: "americas-cup-noir.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_5kQ6oH1mg3Zr2aR6or" },
-    b22Black: { name: "B22 Sneaker - Full Black", price: 179.99, img: "b22-noir.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_5kQ6oH1mg3Zr2aR6or" },
-    b30NoirBlanc: { name: "B30 Sneaker - Noir / Blanc", price: 189.99, img: "b30-noir-blanc.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_b30_example" },
-    lanvinCurb: { name: "Lanvin Curb - Blanc / Rouge", price: 189.99, img: "curb-blanc-rouge.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_curb_example" },
-    noctaHotStep: { name: "Nocta Hot Step 2 - Orange/Black", price: 154.99, img: "hot-step-2.jpg", category: "chaussures", sizes: [40,41,42,43,44], stripeUrl: "https://buy.stripe.com/test_hotstep" },
-    skateNoir: { name: "Skate Sneaker - Noir", price: 139.99, img: "skate-noir.jpg", category: "chaussures", sizes: [40,41,42,43,44], stripeUrl: "https://buy.stripe.com/test_skate" },
-    tnNoir: { name: "TN Requin Air - Full Black", price: 149.99, img: "tn-noir.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_00g14n3uo2Vn02J7sv" },
-    cRunner: { name: "C-Runner Technical", price: 179.99, img: "c-runner.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_crunner" },
-    claquettesCarreaux: { name: "Claquettes Motif Carreaux", price: 69.99, img: "claquettes-carreaux.jpg", category: "chaussures", sizes: [39,40,41,42,43,44], stripeUrl: "https://buy.stripe.com/test_5kQcN51mgbrT" },
-    tshirtEcriture: { name: "T-shirt Premium - Écriture", price: 44.99, img: "tshirt-écriture.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_aFa7sLc0UeE59Dj0hX" },
-    tshirtCrane: { name: "T-shirt Oversize Motif Crâne", price: 44.99, img: "tshirt-crane.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_crane" },
-    cargoGris: { name: "Pantalon Cargo Technique - Gris", price: 59.99, img: "cargo-gris.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_cargo" },
-    vesteZippee: { name: "Veste Zippée Luxury - Black", price: 74.99, img: "veste-zippee.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_veste" },
-    ensembleBleu: { name: "Ensemble Sportswear - Bleu Tech", price: 109.99, img: "ensemble-bleu.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_ens_bleu" },
-    braceletChaine: { name: "Bracelet Chaîne Métal", price: 44.99, img: "bracelet-chaine.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_bracelet_example" },
-    braceletCuirTresse: { name: "Bracelet Cuir Tressé Black", price: 39.99, img: "bracelet-cuir-tresse.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_tresse" },
-    braceletLvNoir: { name: "Bracelet LV - Noir Ébène", price: 49.99, img: "bracelet-lv-noir.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_lv_noir" },
-    braceletLvV: { name: "Bracelet LV Signature V", price: 49.99, img: "bracelet-lv-v.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_lv_v" },
-    bonnetDamier: { name: "Bonnet Motif Damier Luxury", price: 29.99, img: "bonnet-damier.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_damier" },
-    bonnetNoir: { name: "Bonnet Classique Noir", price: 24.99, img: "bonnet-noir.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_bonnet_noir" },
-    casquetteClassique: { name: "Casquette Classique Black", price: 29.99, img: "casquette-classique.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_casq_cl" },
-    casquetteDubai: { name: "Casquette Édition Dubai", price: 34.99, img: "casquette-dubai.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_dubai" },
-    textMonoBrillant: { name: "Casquette Monogramme Brillant", price: 39.99, img: "casquette-monogramme-brillant.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_brillant" },
-    casquettePlaque: { name: "Casquette Signature Plaque Metal", price: 34.99, img: "casquette-plaque.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_plaque" },
-    casquetteRose: { name: "Casquette Soft Rose", price: 29.99, img: "casquette-rose.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_rose" }
-};
-
-const reviewsData = [
-    { author: "Anonyme", comment: "Qualité exceptionnelle, finitions au top. Je suis bluffé par le rendu, rien à redire.", rating: 5, img: "b22-noir.jpg" },
-    { author: "Mahinur S.", comment: "Livraison ultra rapide, l'article correspond parfaitement à la description. Je recommande !", rating: 5, img: "curb-blanc-rouge.jpg" },
-    { author: "Amaya M.", comment: "Modèle de super bonne qualité. Packaging soigné et service au top. Je reviendrai.", rating: 5, img: "americas-cup-noir.jpg" }
+// BASE DE DONNÉES DE PRODUITS FICTIFS EXEMPLES
+const productsData = [
+    { id: 1, name: "Sneakers Avra Elite Gold", price: 189.00, category: "chaussures", img: "produit-chaussures-1.jpg", sizes: ["39", "40", "41", "42", "43", "44"] },
+    { id: 2, name: "Veste Blazer Coupe Signature", price: 249.00, category: "vetements", img: "produit-vetements-1.jpg", sizes: ["S", "M", "L", "XL"] },
+    { id: 3, name: "Lunettes de Soleil Aero Onyx", price: 135.00, category: "accessoires", img: "produit-accessoires-1.jpg", sizes: ["Taille Unique"] },
+    { id: 4, name: "Mocassins en Cuir Suédé Havane", price: 210.00, category: "chaussures", img: "produit-chaussures-2.jpg", sizes: ["40", "41", "42", "43"] }
 ];
 
-// ─── STATE ──────────────────────────────────────────────────────────────────
 let cart = [];
-let currentReviewIndex = 0;
-let activeProductId = null;
-let selectedSize = null;
+let currentSelectedSize = null;
+let currentProductIdOnPage = null;
 
-// ─── INIT ───────────────────────────────────────────────────────────────────
-window.onload = function() {
-    showHomePage();
-    renderGlobalStars();
-    updateReview();
-};
+// GÉNÉRER LE CATALOGUE AU CHARGEMENT
+window.addEventListener('DOMContentLoaded', () => {
+    renderCatalogue(productsData);
+});
 
-// ─── HOME / CATALOGUE ────────────────────────────────────────────────────────
+function renderCatalogue(products) {
+    const grid = document.getElementById('products-grid');
+    grid.innerHTML = '';
+    if(products.length === 0) {
+        grid.innerHTML = '<p class="text-center col-span-full py-8 text-sm text-gray-500">Aucun produit trouvé.</p>';
+        return;
+    }
+    products.forEach(p => {
+        const card = document.createElement('div');
+        card.className = "product-card";
+        card.setAttribute('onclick', `openProductPage(${p.id})`);
+        card.innerHTML = `
+            <div class="product-badge">Premium</div>
+            <div class="product-img-wrap">
+                <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300/f8f8f8/080808?text=${encodeURIComponent(p.name)}'">
+            </div>
+            <div class="product-info">
+                <p class="product-name">${p.name}</p>
+                <p class="product-price">${p.price.toFixed(2)}€</p>
+                <button class="btn-buy">Découvrir le produit</button>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+// NAVIGATION & FILTRES
 function showHomePage() {
-    document.getElementById('homePage').style.display = '';
+    document.getElementById('homePage').style.display = 'block';
     document.getElementById('productPage').style.display = 'none';
-    document.getElementById('catalogue-section').style.display = '';
-    document.getElementById('home-reviews').style.display = '';
-    document.getElementById('main-footer').style.display = '';
+    document.getElementById('catalogue-title').innerText = "Tous Nos Produits";
     document.getElementById('back-home-box').style.display = 'none';
-    document.getElementById('catalogue-title').innerText = 'Tous Nos Produits';
-    renderProductsGrid(Object.keys(productsData));
+    renderCatalogue(productsData);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function filterCategory(cat) {
     document.getElementById('homePage').style.display = 'none';
     document.getElementById('productPage').style.display = 'none';
-    document.getElementById('catalogue-section').style.display = '';
-    document.getElementById('home-reviews').style.display = '';
-    document.getElementById('main-footer').style.display = '';
-    document.getElementById('back-home-box').style.display = '';
-    const titles = { chaussures: 'Nos Chaussures Premium', vetements: 'Nos Vêtements Premium', accessoires: 'Nos Accessoires Premium' };
-    document.getElementById('catalogue-title').innerText = titles[cat] || 'Produits';
-    const filtered = Object.keys(productsData).filter(k => productsData[k].category === cat);
-    renderProductsGrid(filtered);
+    document.getElementById('back-home-box').style.display = 'block';
+    document.getElementById('catalogue-title').innerText = cat.charAt(0).toUpperCase() + cat.slice(1);
+    const filtered = productsData.filter(p => p.category === cat);
+    renderCatalogue(filtered);
     window.scrollTo({ top: document.getElementById('catalogue-section').offsetTop - 80, behavior: 'smooth' });
 }
 
-function renderProductsGrid(keys) {
-    const grid = document.getElementById('products-grid');
-    grid.innerHTML = '';
-    if (!keys.length) {
-        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#aaa;font-size:13px;">Aucun produit trouvé.</div>';
-        return;
-    }
-    keys.forEach(key => {
-        const p = productsData[key];
-        grid.innerHTML += `
-            <div class="product-card" onclick="openProductPage('${key}')">
-                <div class="product-page-badge" style="position:absolute;top:10px;left:10px;background:var(--black);color:var(--gold);font-size:9px;font-weight:700;letter-spacing:0.12em;padding:3px 9px;text-transform:uppercase;border-radius:3px;z-index:1;">Premium</div>
-                <div class="product-img-wrap">
-                    <img src="${p.img}" alt="${p.name}" loading="lazy">
-                </div>
-                <div class="product-info">
-                    <p class="product-name">${p.name}</p>
-                    <p class="product-price">${p.price.toFixed(2)}€</p>
-                    <button class="btn-buy" onclick="event.stopPropagation();openProductPage('${key}')">
-                        <i class="fa-solid fa-bag-shopping" style="margin-right:6px;"></i>Voir le produit
-                    </button>
-                </div>
-            </div>`;
-    });
+function toggleSearch() {
+    const wrap = document.getElementById('searchWrap');
+    wrap.style.display = wrap.style.display === 'none' ? 'block' : 'none';
+    if(wrap.style.display === 'block') document.getElementById('searchInput').focus();
 }
 
-// ─── PRODUCT PAGE ─────────────────────────────────────────────────────────────
-function openProductPage(productId) {
-    activeProductId = productId;
-    selectedSize = null;
-    const p = productsData[productId];
-
+function searchProducts() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const filtered = productsData.filter(p => p.name.toLowerCase().includes(q));
     document.getElementById('homePage').style.display = 'none';
-    document.getElementById('catalogue-section').style.display = 'none';
-    document.getElementById('home-reviews').style.display = 'none';
-    document.getElementById('main-footer').style.display = 'none';
-    document.getElementById('productPage').style.display = '';
+    document.getElementById('productPage').style.display = 'none';
+    document.getElementById('back-home-box').style.display = 'block';
+    renderCatalogue(filtered);
+}
 
-    document.getElementById('pp-img').src = p.img;
-    document.getElementById('pp-img').alt = p.name;
-    document.getElementById('pp-name').innerText = p.name;
-    document.getElementById('pp-price').innerHTML = p.price.toFixed(2) + '€ <span>TTC</span>';
-    document.getElementById('pp-buy-link').href = p.stripeUrl;
+// DÉTAILS DE LA PAGE PRODUIT
+function openProductPage(productId) {
+    const product = productsData.find(p => p.id === productId);
+    if(!product) return;
 
-    const catLabels = { chaussures: '👟 Chaussures Premium', vetements: '👕 Vêtements', accessoires: '✨ Accessoires' };
-    document.getElementById('pp-category').innerText = catLabels[p.category] || p.category;
+    currentProductIdOnPage = productId;
+    currentSelectedSize = null; // Réinitialiser la taille sélectionnée
 
-    const sizeLabels = { chaussures: 'Pointure', vetements: 'Taille', accessoires: 'Option' };
-    document.getElementById('pp-size-label').innerText = sizeLabels[p.category] || 'Taille';
+    // Masquer les autres sections majeures
+    document.getElementById('homePage').style.display = 'none';
+    
+    // Mettre à jour les données de la page produit
+    document.getElementById('pp-img').src = product.img;
+    document.getElementById('pp-img').onerror = function() { this.src = 'https://via.placeholder.com/500/f8f8f8/080808?text=' + encodeURIComponent(product.name); };
+    document.getElementById('pp-category').innerText = product.category;
+    document.getElementById('pp-name').innerText = product.name;
+    document.getElementById('pp-price').innerText = product.price.toFixed(2) + "€";
 
-    const sizesWrap = document.getElementById('pp-sizes');
-    sizesWrap.innerHTML = '';
-    p.sizes.forEach((s, i) => {
+    // Générer dynamiquement les boutons de taille
+    const sizesGrid = document.getElementById('pp-sizes');
+    sizesGrid.innerHTML = '';
+    
+    product.sizes.forEach(size => {
         const btn = document.createElement('button');
-        btn.className = 'size-btn' + (typeof s === 'string' && s.length > 3 ? ' text-size' : '');
-        btn.innerText = s;
-        if (i === 0) { btn.classList.add('selected'); selectedSize = s; }
-        btn.onclick = function() {
-            sizesWrap.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-            selectedSize = s;
-        };
-        sizesWrap.appendChild(btn);
+        btn.className = `size-btn ${isNaN(size) ? 'text-size' : ''}`;
+        btn.innerText = size;
+        btn.onclick = () => selectSize(btn, size);
+        sizesGrid.appendChild(btn);
     });
 
+    // Afficher le conteneur du produit
+    document.getElementById('productPage').style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function selectSize(element, size) {
+    // Désélectionner tous les autres boutons de la grille
+    const btns = document.querySelectorAll('#pp-sizes .size-btn');
+    btns.forEach(b => b.classList.remove('selected'));
+    
+    // Sélectionner le bouton cliqué
+    element.classList.add('selected');
+    currentSelectedSize = size;
 }
 
 function closeProductPage() {
     document.getElementById('productPage').style.display = 'none';
-    document.getElementById('catalogue-section').style.display = '';
-    document.getElementById('home-reviews').style.display = '';
-    document.getElementById('main-footer').style.display = '';
-    if (document.getElementById('back-home-box').style.display !== '') {
-        document.getElementById('homePage').style.display = 'none';
+    // Rétablir la vue précédente : si retour vers l'accueil ou le catalogue filtré
+    if(document.getElementById('back-home-box').style.display === 'block') {
+        // Reste sur le catalogue filtré actuellement actif
     } else {
-        document.getElementById('homePage').style.display = '';
+        document.getElementById('homePage').style.display = 'block';
     }
-    window.scrollTo({ top: document.getElementById('catalogue-section').offsetTop - 80, behavior: 'smooth' });
 }
 
+// GESTION DU PANIER
 function addToCartFromPage() {
-    if (!activeProductId) return;
-    const p = productsData[activeProductId];
-    const existing = cart.find(i => i.id === activeProductId && i.size === selectedSize);
-    if (existing) {
-        existing.qty++;
-    } else {
-        cart.push({ id: activeProductId, name: p.name, price: p.price, img: p.img, size: selectedSize, qty: 1, stripeUrl: p.stripeUrl });
-    }
-    updateCartStats();
-    showToast('✓ Ajouté au panier');
-}
-
-// ─── CART ─────────────────────────────────────────────────────────────────────
-function toggleCart() {
-    const sidebar = document.getElementById('cartSidebar');
-    const overlay = document.getElementById('cartOverlay');
-    const isOpen = sidebar.classList.contains('open');
-    if (!isOpen) {
-        sidebar.classList.add('open');
-        overlay.classList.add('open');
-        renderCartItems();
-    } else {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('open');
-    }
-}
-
-function renderCartItems() {
-    const container = document.getElementById('cart-items-list');
-    if (!cart.length) {
-        container.innerHTML = '<p style="text-align:center;color:#aaa;font-size:12px;padding:40px 0;">Votre panier est vide.</p>';
+    if(!currentSelectedSize) {
+        showToast("⚠️ Veuillez choisir une taille avant l'ajout !");
+        // Animation flash sur le label taille pour attirer l'attention
+        const label = document.getElementById('pp-size-label');
+        label.style.color = '#ef4444';
+        setTimeout(() => label.style.color = '#888', 1000);
         return;
     }
-    container.innerHTML = cart.map((item, i) => `
-        <div class="cart-item">
-            <div class="cart-item-img"><img src="${item.img}" alt="${item.name}"></div>
-            <div style="flex:1;min-width:0;">
-                <p class="cart-item-name" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.name}</p>
+
+    const product = productsData.find(p => p.id === currentProductIdOnPage);
+    if(!product) return;
+
+    // Rechercher si l'élément identique existe (même id ET même taille)
+    const existingItem = cart.find(item => item.id === product.id && item.size === currentSelectedSize);
+    if(existingItem) {
+        existingItem.qty++;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            img: product.img,
+            size: currentSelectedSize,
+            qty: 1
+        });
+    }
+
+    updateCartUI();
+    showToast(`🛒 ${product.name} (Taille ${currentSelectedSize}) ajouté !`);
+}
+
+function buyNowFromPage() {
+    if(!currentSelectedSize) {
+        showToast("⚠️ Veuillez sélectionner une taille pour commander !");
+        return;
+    }
+    addToCartFromPage();
+    toggleCart();
+}
+
+function updateCartUI() {
+    const list = document.getElementById('cart-items-list');
+    list.innerHTML = '';
+    let total = 0;
+    let count = 0;
+
+    cart.forEach((item, index) => {
+        total += item.price * item.qty;
+        count += item.qty;
+
+        const div = document.createElement('div');
+        div.className = "cart-item";
+        div.innerHTML = `
+            <div class="cart-item-img">
+                <img src="${item.img}" onerror="this.src='https://via.placeholder.com/60/f6f6f6/080808'">
+            </div>
+            <div style="flex:1;">
+                <p class="cart-item-name">${item.name}</p>
                 <p class="cart-item-size">Taille : ${item.size}</p>
-                <p class="cart-item-price">${(item.price * item.qty).toFixed(2)}€</p>
+                <p class="cart-item-price">${item.price.toFixed(2)}€</p>
             </div>
             <div class="qty-ctrl">
-                <button onclick="changeQty(${i},-1)">−</button>
+                <button onclick="changeQty(${index}, -1)">-</button>
                 <span>${item.qty}</span>
-                <button onclick="changeQty(${i},1)">+</button>
+                <button onclick="changeQty(${index}, 1)">+</button>
             </div>
-        </div>`).join('');
-}
+        `;
+        list.appendChild(div);
+    });
 
-function changeQty(index, delta) {
-    cart[index].qty += delta;
-    if (cart[index].qty <= 0) cart.splice(index, 1);
-    updateCartStats();
-    renderCartItems();
-}
+    document.getElementById('cart-count-badge').innerText = count;
+    document.getElementById('cart-total-price').innerText = total.toFixed(2) + "€";
 
-function updateCartStats() {
-    const totalQty = cart.reduce((s, i) => s + i.qty, 0);
-    const totalPrice = cart.reduce((s, i) => s + i.price * i.qty, 0);
-    document.getElementById('cart-count-badge').innerText = totalQty;
-    document.getElementById('cart-total-price').innerText = totalPrice.toFixed(2) + '€';
-
-    const limit = 150;
-    const needed = limit - totalPrice;
-    if (needed > 0) {
-        document.getElementById('shipping-promo-text').innerHTML = `Plus que <strong>${needed.toFixed(2)}€</strong> pour la <strong>Livraison Gratuite</strong>`;
-        document.getElementById('shipping-bar').style.width = Math.min(100, (totalPrice / limit) * 100) + '%';
+    // Mettre à jour la barre de livraison gratuite (Objectif : 150€)
+    const needed = 150 - total;
+    const bar = document.getElementById('shipping-bar');
+    const text = document.getElementById('shipping-promo-text');
+    
+    if(needed > 0) {
+        const pct = Math.min((total / 150) * 100, 100);
+        bar.style.width = pct + "%";
+        text.innerHTML = `Plus que <strong>${needed.toFixed(2)}€</strong> pour débloquer la <strong>Livraison Gratuite</strong>`;
     } else {
-        document.getElementById('shipping-promo-text').innerHTML = '<span style="color:#16a34a;font-weight:700;">🚚 Livraison Gratuite débloquée !</span>';
-        document.getElementById('shipping-bar').style.width = '100%';
-    }
-
-    const notice = document.getElementById('cart-multi-notice');
-    const btn = document.getElementById('checkout-main-btn');
-    if (cart.length > 1) {
-        notice.style.display = '';
-        btn.innerHTML = `<i class="fa-solid fa-lock" style="margin-right:6px;"></i>Payer l'article 1 : ${cart[0].name.slice(0, 22)}...`;
-    } else if (cart.length === 1) {
-        notice.style.display = 'none';
-        btn.innerHTML = `<i class="fa-solid fa-lock" style="margin-right:6px;"></i>Passer la commande`;
-    } else {
-        notice.style.display = 'none';
-        btn.innerHTML = 'Panier Vide';
+        bar.style.width = "100%";
+        text.innerHTML = `🎉 Félicitations ! Vous bénéficiez de la <strong>Livraison Gratuite</strong> !`;
     }
 }
 
-function processCheckout() {
-    if (!cart.length) return;
-    window.open(cart[0].stripeUrl, '_blank');
-    cart.shift();
-    updateCartStats();
-    renderCartItems();
-}
-
-// ─── SEARCH ───────────────────────────────────────────────────────────────────
-function toggleSearch() {
-    const wrap = document.getElementById('searchWrap');
-    const icon = document.getElementById('searchToggleIcon');
-    const input = document.getElementById('searchInput');
-    if (wrap.style.display === 'none' || wrap.style.display === '') {
-        wrap.style.display = 'block';
-        icon.style.display = 'none';
-        input.style.display = 'block';
-        setTimeout(() => input.focus(), 50);
-    } else {
-        wrap.style.display = 'none';
-        icon.style.display = 'block';
-        input.value = '';
+function changeQty(index, modifier) {
+    cart[index].qty += modifier;
+    if(cart[index].qty <= 0) {
+        cart.splice(index, 1);
     }
+    updateCartUI();
 }
 
-function searchProducts() {
-    const term = document.getElementById('searchInput').value.toLowerCase().trim();
-    const matching = Object.keys(productsData).filter(k => productsData[k].name.toLowerCase().includes(term));
-    document.getElementById('homePage').style.display = 'none';
-    document.getElementById('productPage').style.display = 'none';
-    document.getElementById('catalogue-section').style.display = '';
-    document.getElementById('home-reviews').style.display = '';
-    document.getElementById('main-footer').style.display = '';
-    document.getElementById('back-home-box').style.display = '';
-    document.getElementById('catalogue-title').innerText = 'Résultats de recherche';
-    renderProductsGrid(matching);
+function toggleCart() {
+    document.getElementById('cartSidebar').classList.toggle('open');
+    document.getElementById('cartOverlay').classList.toggle('open');
 }
 
-// ─── REVIEWS ──────────────────────────────────────────────────────────────────
-function renderGlobalStars() {
-    const c = document.getElementById('review-stars');
-    c.innerHTML = '';
-    for (let i = 0; i < 5; i++) c.innerHTML += '<i class="fa-solid fa-star"></i>';
-}
-
-function updateReview() {
-    const r = reviewsData[currentReviewIndex];
-    document.getElementById('review-comment').innerText = `"${r.comment}"`;
-    document.getElementById('review-author').innerText = '— ' + r.author;
-    document.getElementById('review-prod-thumb').src = r.img;
-    const stars = document.getElementById('current-review-stars');
-    stars.innerHTML = '';
-    for (let i = 0; i < 5; i++) {
-        stars.innerHTML += i < r.rating ? '<i class="fa-solid fa-star" style="color:var(--gold);"></i>' : '<i class="fa-regular fa-star" style="color:rgba(255,255,255,0.2);"></i>';
-    }
-}
-
-function nextReview() { currentReviewIndex = (currentReviewIndex + 1) % reviewsData.length; updateReview(); }
-function prevReview() { currentReviewIndex = (currentReviewIndex - 1 + reviewsData.length) % reviewsData.length; updateReview(); }
-
-// ─── MODALS ───────────────────────────────────────────────────────────────────
-function openLoginModal() {
-    document.getElementById('loginModal').classList.add('open');
-}
-function closeLoginModal() {
-    document.getElementById('loginModal').classList.remove('open');
-}
-function simulateGoogleLogin() {
-    closeLoginModal();
-    document.getElementById('user-icon').className = 'fa-solid fa-circle-user';
-    document.getElementById('user-icon').style.color = '#16a34a';
-    showToast('✓ Connexion réussie !');
-}
+// AUTH & MODALS
+function openLoginModal() { document.getElementById('loginModal').classList.add('open'); }
+function closeLoginModal() { document.getElementById('loginModal').classList.remove('open'); }
 
 function openLegalModal(type) {
     const title = document.getElementById('legalModalTitle');
     const content = document.getElementById('legalModalContent');
-    if (type === 'mentions') {
-        title.innerText = 'Mentions Légales';
-        content.innerHTML = `
-            <p class="section-title">1. Édition du site</p>
-            <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004, il est précisé aux utilisateurs du site <strong>AVRA LUXURY</strong> l'identité des différents intervenants :</p>
-            <p><strong>Propriétaire :</strong> AVRA LUXURY — Contact : avraluxury@gmail.com — Montpellier 34000, France.</p>
-            <p><strong>Statut :</strong> Micro-entreprise / Entrepreneur individuel (EI).</p>
-            <p class="section-title">2. Hébergement</p>
-            <p>Le site est hébergé par <strong>Vercel Inc.</strong>, 340 S Lemon Ave #4133 Walnut, CA 91789, USA.</p>
-            <p class="section-title">3. Propriété intellectuelle</p>
-            <p>AVRA LUXURY est propriétaire des droits de propriété intellectuelle sur tous les éléments du site. Toute reproduction sans autorisation est interdite.</p>
-            <p class="section-title">4. Limitations de responsabilité</p>
-            <p>AVRA LUXURY ne pourra être tenu responsable des dommages directs ou indirects causés lors de l'accès au site.</p>`;
-    } else if (type === 'cgv') {
-        title.innerText = 'Conditions Générales de Vente (CGV)';
-        content.innerHTML = `
-            <p class="section-title">1. Objet</p>
-            <p>Les présentes CGV définissent les relations contractuelles entre <strong>AVRA LUXURY</strong> et l'acheteur. L'achat implique une acceptation sans réserve des présentes conditions.</p>
-            <p class="section-title">2. Produits</p>
-            <p>Les produits proposés sont dans la limite des stocks disponibles. Les photographies sont les plus fidèles possibles mais n'engagent pas le Vendeur.</p>
-            <p class="section-title">3. Tarifs et Paiement</p>
-            <p>Les prix sont en Euros (€) TTC. Les paiements s'effectuent de manière sécurisée via <strong>Stripe</strong> (carte bancaire, CB, Visa, Mastercard).</p>
-            <p class="section-title">4. Livraison</p>
-            <p>Les livraisons sont réalisées à l'adresse indiquée. Les acheteurs bénéficient d'un <strong>délai de rétractation de 14 jours</strong> à compter de la livraison pour retour ou remboursement.</p>`;
+    if(type === 'mentions') {
+        title.innerText = "Mentions Légales";
+        content.innerHTML = `<p>Conformément aux dispositions légales, la boutique AVRA LUXURY est éditée par la société AVRA International.</p><p><strong>Hébergement :</strong> Serveurs Cloud Sécurisés.</p>`;
+    } else {
+        title.innerText = "Conditions Générales de Vente";
+        content.innerHTML = `<p>Les livraisons sont réalisées à l'adresse indiquée. Les acheteurs bénéficient d'un <strong>délai de rétractation de 14 jours</strong> à compter de la livraison pour retour ou remboursement.</p>`;
     }
     document.getElementById('legalModal').classList.add('open');
 }
-function closeLegalModal() { document.getElementById('legalModal').classList.remove('open'); }
+function closeLegalModal() { document.getElementById('legalModal').classList.remove('remove'); document.getElementById('legalModal').classList.remove('open'); }
 
-// Close modal on overlay click
-document.getElementById('loginModal').addEventListener('click', function(e) { if (e.target === this) closeLoginModal(); });
-document.getElementById('legalModal').addEventListener('click', function(e) { if (e.target === this) closeLegalModal(); });
+// MOBILE MENU
+function openMobileMenu() { document.getElementById('mobileMenu').classList.add('open'); }
+function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+function closeMobileMenuOnOverlay(e) { if(e.target === document.getElementById('mobileMenu')) closeMobileMenu(); }
 
-// ─── MOBILE MENU ──────────────────────────────────────────────────────────────
-function openMobileMenu() {
-    const m = document.getElementById('mobileMenu');
-    m.classList.add('open');
-}
-function closeMobileMenu() {
-    document.getElementById('mobileMenu').classList.remove('open');
-}
-function closeMobileMenuOnOverlay(e) {
-    if (e.target === document.getElementById('mobileMenu')) closeMobileMenu();
-}
-
-// ─── TOAST ────────────────────────────────────────────────────────────────────
+// TOAST
 function showToast(msg) {
     const t = document.getElementById('toast');
     t.innerText = msg;
@@ -1273,5 +1133,3 @@ function showToast(msg) {
 </script>
 </body>
 </html>
-HTMLEOF
-echo "Done. File size: $(wc -c < /mnt/user-data/outputs/index.html) bytes"
