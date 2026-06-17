@@ -2,1494 +2,1274 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H LUXURY — Haute Maroquinerie & Souliers</title>
-    
-    <!-- SDK PAYPAL OFFICIEL -->
-    <script src="https://www.paypal.com/sdk/js?client-id=VOTRE_CLIENT_ID_PAYPAL&currency=EUR"></script>
-    
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-family=%22serif%22 font-size=%2280%22 fill=%22%23000000%22 font-weight=%22bold%22>H</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>AVRA LUXURY | Boutique Officielle</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-site: #ffffff;
-            --text-dark: #000000;
-            --text-muted: #777777;
-            --border-light: #eeeeee;
-            --price-red: #d93838;     
-            --star-color: #ffb4b4;    
+            --gold: #C9A84C;
+            --gold-light: #E8CC7A;
+            --gold-dark: #9A7A2E;
+            --black: #080808;
+            --dark: #111111;
+            --charcoal: #1a1a1a;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; background: #fff; }
 
-        body {
-            background-color: var(--bg-site);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Top Notification Bar */
-        .top-bar {
-            background-color: #000000;
-            color: #ffffff;
+        /* HEADER */
+        .promo-bar {
+            background: var(--black);
+            color: var(--gold-light);
+            font-size: 11px;
             text-align: center;
-            padding: 10px 0;
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-        }
-
-        /* En-tête Principal Réactif */
-        header {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            padding: 22px 4%;
-            background: #ffffff;
-            border-bottom: 1px solid var(--border-light);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-size: 12px;
-            font-weight: 500;
-            padding: 8px 12px;
+            padding: 10px;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.2s ease;
         }
+        .promo-bar span { color: #fff; font-weight: 700; }
 
-        nav ul li a.active-btn {
-            background: #000000;
-            color: #ffffff;
-            border-radius: 4px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            cursor: pointer;
-        }
-
-        .logo-icon {
-            font-family: 'Cinzel', serif;
-            font-size: 30px;
-            font-weight: 600;
-            color: #000000;
-            line-height: 1;
-            border: 2px solid #000000;
-            padding: 4px 14px;
-        }
-
-        .logo-text {
-            font-family: 'Cinzel', serif;
-            font-weight: 400;
-            font-size: 22px;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            color: var(--text-dark);
-        }
-
-        .header-right {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 22px;
-        }
-
-        .search-box input {
-            padding: 8px 14px;
-            border: 1px solid #dddddd;
-            border-radius: 4px;
-            font-size: 13px;
-            outline: none;
-            width: 180px;
-            transition: border-color 0.2s;
-        }
-
-        .search-box input:focus {
-            border-color: #000000;
-        }
-
-        .icon-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text-dark);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -6px;
-            right: -8px;
-            background: #000000;
-            color: #fff;
-            font-size: 10px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-        }
-
-        /* Bandeau Défilant Animé */
-        .marquee-container {
-            background: #000000;
-            color: #ffffff;
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 12px 0;
-            border-top: 1px solid #222;
-        }
-
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 30s linear infinite;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .marquee-content span {
-            margin-right: 60px;
-        }
-
-        @keyframes marquee {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-50%, 0, 0); }
-        }
-
-        /* Hero Bannière Image Principale */
-        .hero-banner {
-            position: relative;
-            width: 100%;
-            height: 65vh;
-            overflow: hidden;
-            background: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-banner img.hero-bg-img {
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.25);
-            z-index: 2;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
+        .shipping-bar-wrap {
+            background: #f5f5f5;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 7px 16px;
             text-align: center;
-            color: #ffffff;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.3);
-            padding: 0 20px;
-        }
-
-        .hero-content h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 46px;
-            font-weight: 400;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-        }
-
-        .hero-content p {
-            font-size: 15px;
-            font-weight: 300;
-            margin-bottom: 35px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .btn-shop-now {
-            background-color: #ffffff;
-            color: #000000;
-            padding: 16px 45px;
-            text-transform: uppercase;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-shop-now:hover {
-            background-color: #000000;
-            color: #ffffff;
-        }
-
-        /* Section Double Catalogues */
-        .catalogues-section {
-            max-width: 1340px;
-            margin: 45px auto 15px auto;
-            padding: 0 2%;
-        }
-
-        .catalogues-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .catalogue-banner-card {
-            position: relative;
-            background-color: #f5f5f5;
-            aspect-ratio: 16 / 9;
-            border-radius: 12px;
-            overflow: hidden;
+            font-size: 11px;
+            color: #555;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .catalogue-banner-img {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .catalogue-banner-card:hover .catalogue-banner-img {
-            transform: scale(1.04);
-        }
-
-        .catalogue-banner-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            z-index: 2;
-        }
-
-        .catalogue-banner-text {
-            position: relative;
-            z-index: 3;
-            text-align: center;
-            color: #ffffff;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-        }
-
-        .catalogue-banner-text h2 {
-            font-size: 28px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-        }
-
-        .catalogue-banner-text span {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-bottom: 1px solid #fff;
-            padding-bottom: 4px;
-        }
-
-        /* Zone Filtres de prix dynamique */
-        .filter-wrapper {
-            max-width: 1340px;
-            margin: 20px auto 0 auto;
-            padding: 0 2%;
-            display: none; 
-            justify-content: flex-end;
             gap: 10px;
         }
 
-        .filter-select {
-            padding: 10px 16px;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            outline: none;
-            cursor: pointer;
+        nav.main-nav {
             background: #fff;
-        }
-
-        /* Grille Principale des Produits */
-        .container {
-            max-width: 1340px;
-            margin: 0 auto;
-            padding: 35px 2% 90px 2%;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 22px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 45px;
-            font-weight: 600;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px 22px;
-        }
-
-        .product-card {
-            background: #ffffff;
-            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
             display: flex;
-            flex-direction: column;
-        }
-
-        .product-img-container {
-            width: 100%;
-            border-radius: 8px;
-            background-color: #f8f8f8;
-            overflow: hidden;
-            position: relative;
-            aspect-ratio: 1 / 1;
-            cursor: pointer;
-        }
-
-        .product-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .product-card:hover .product-img-container img {
-            transform: scale(1.03);
-        }
-
-        .product-info {
-            padding: 16px 4px 4px 4px;
-        }
-
-        .stars-container {
-            display: flex;
-            align-items: center;
-            gap: 3px;
-            margin-bottom: 8px;
-        }
-
-        .star-icon {
-            color: var(--star-color);
-            font-size: 11px;
-        }
-
-        .product-title {
-            font-size: 13px;
-            font-weight: 500;
-            color: #222222;
-            margin-bottom: 8px;
-            cursor: pointer;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .product-price-box {
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .current-price {
-            color: var(--price-red);
-            margin-right: 8px;
-        }
-
-        .old-price {
-            text-decoration: line-through;
-            color: #999999;
-            font-weight: 400;
-        }
-
-        /* Toast Notification Succès Panier */
-        .toast-notification {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: #000000;
-            color: #ffffff;
-            padding: 16px 30px;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 4px;
-            z-index: 2000;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            pointer-events: none;
-        }
-        .toast-notification.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Fenêtres Modales */
-        .modal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: flex; align-items: center; justify-content: center;
-            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-        }
-        .modal.active { opacity: 1; pointer-events: auto; }
-        
-        .modal-content { 
-            background: #fff; 
-            width: 92%; 
-            max-width: 840px; 
-            display: grid; 
-            grid-template-columns: 1.1fr 0.9fr; 
-            position: relative; 
-            padding: 30px; 
-            border-radius: 8px; 
-            color: #000; 
-            gap: 20px;
-        }
-        
-        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; z-index: 10; transition: color 0.2s; }
-        .modal-close:hover { color: #000; }
-        .modal-left { display: flex; align-items: center; justify-content: center; background: #fbfbfb; border-radius: 6px; padding: 10px; }
-        .modal-left img { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 6px; }
-        .modal-right { padding: 10px; display: flex; flex-direction: column; justify-content: flex-start; }
-        
-        select, .input-field { width: 100%; padding: 12px; border: 1px solid #ddd; background: #fff; margin-bottom: 15px; font-size: 14px; border-radius: 4px; outline: none; }
-        select:focus, .input-field:focus { border-color: #000; }
-        
-        .promo-badge {
-            background-color: #e62c44;
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 3px;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            margin-left: 5px;
-        }
-        
-        .live-cart-badge {
-            background-color: #f3a3b9;
-            color: #ffffff;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 10px 15px;
-            border-radius: 20px;
-            margin-bottom: 18px;
-            display: inline-block;
-            width: 100%;
-            text-align: center;
-        }
-        
-        .quantity-selector {
-            display: inline-flex;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            background: #fff;
-            width: 120px;
             justify-content: space-between;
             align-items: center;
-        }
-        
-        .quantity-selector button {
-            background: none;
-            border: none;
-            width: 35px;
-            height: 38px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        .quantity-selector span {
-            font-size: 14px;
-            font-weight: 500;
+            padding: 0 20px;
+            height: 64px;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.07);
         }
 
-        .btn-add-cart { 
-            width: 100%; 
-            background: #000; 
-            color: #fff; 
-            border: none; 
-            padding: 15px; 
-            text-transform: uppercase; 
-            font-size: 13px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            border-radius: 4px; 
-            letter-spacing: 1px; 
-            transition: background 0.2s;
-            margin-bottom: 10px;
-        }
-        .btn-add-cart:hover { background: #222; }
-        
-        .payment-icons-box {
-            display: flex;
-            gap: 6px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 15px 0;
-        }
-        
-        .payment-logo-badge {
-            font-size: 9px;
-            font-weight: bold;
-            padding: 4px 7px;
-            border-radius: 3px;
-            background: #f4f4f4;
-            color: #444;
-            border: 1px solid #e2e2e2;
+        .brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: var(--black);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            cursor: pointer;
         }
-        
-        .trust-footer-mention {
+        .brand-name span { color: var(--gold); }
+
+        .nav-links { display: flex; gap: 28px; }
+        .nav-links button {
             font-size: 11px;
-            color: #666;
-            text-align: center;
-            margin-top: 10px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #333;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px 0;
+            border-bottom: 1.5px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-links button:hover { color: var(--gold-dark); border-bottom-color: var(--gold); }
+
+        .nav-icons { display: flex; align-items: center; gap: 18px; color: #222; font-size: 17px; }
+        .nav-icons i { cursor: pointer; transition: color 0.2s; }
+        .nav-icons i:hover { color: var(--gold-dark); }
+
+        /* HAMBURGER MOBILE */
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+        .hamburger span { display: block; width: 22px; height: 2px; background: #222; transition: all 0.3s; border-radius: 2px; }
+
+        /* MOBILE MENU */
+        #mobileMenu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 100;
+        }
+        #mobileMenuPanel {
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 280px;
+            background: #fff;
+            padding: 32px 24px;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+        }
+        #mobileMenu.open { display: block; }
+        #mobileMenu.open #mobileMenuPanel { transform: translateX(0); }
+        .mobile-menu-link {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #111;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+            background: none;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+        }
+        .mobile-menu-link:hover { color: var(--gold-dark); }
+
+        /* HERO */
+        #home-hero {
+            position: relative;
+            height: 48vh;
+            min-height: 280px;
+            background: var(--dark);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            overflow: hidden;
         }
-
-        /* Panier Latéral Coulissant */
-        .cart-sidebar {
-            position: fixed; top: 0; right: -420px; width: 420px; height: 100%;
-            background: #ffffff; box-shadow: -5px 0 30px rgba(0,0,0,0.15); z-index: 1100;
-            transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; padding: 35px 30px;
+        #home-hero img.hero-bg {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.45;
         }
-        .cart-sidebar.active { right: 0; }
-        .cart-items { flex: 1; overflow-y: auto; margin-bottom: 25px; padding-right: 5px; }
-        .cart-item { display: flex; gap: 18px; margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid #eee; align-items: center; }
-        .cart-item img { width: 70px; height: 70px; object-fit: cover; border-radius: 4px; background: #f9f9f9; }
-
-        /* Modale Cookies Conforme CNIL */
-        .cookie-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.75); z-index: 9999;
-            display: flex; align-items: center; justify-content: center;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
         }
-        .cookie-box {
-            background: #fff; padding: 40px; max-width: 500px; width: 90%;
-            border-radius: 8px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        .hero-badge {
+            display: inline-block;
+            border: 1.5px solid var(--gold);
+            color: var(--gold-light);
+            font-size: 10px;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            padding: 6px 20px;
+            margin-bottom: 18px;
         }
-        .cookie-box h3 { font-family: 'Cinzel', serif; font-size: 22px; margin-bottom: 15px; letter-spacing: 1px; }
-        .cookie-box p { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 25px; }
-        .cookie-buttons { display: flex; gap: 15px; }
-        .btn-cookie-accept { flex: 1; background: #000; color: #fff; border: none; padding: 14px; font-weight: 600; text-transform: uppercase; font-size: 12px; cursor: pointer; border-radius: 4px; }
-        .btn-cookie-refuse { flex: 1; background: #fff; color: #000; border: 1px solid #000; padding: 14px; font-weight: 600; text-transform: uppercase; font-size: 12px; cursor: pointer; border-radius: 4px; }
-
-        /* Pied de page */
-        footer {
-            background: #fafafa;
-            border-top: 1px solid var(--border-light);
-            padding: 80px 4% 45px 4%;
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(38px, 7vw, 80px);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 10px;
+            letter-spacing: 0.05em;
+        }
+        .hero-title span { color: var(--gold); }
+        .hero-sub {
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .hero-code {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
             font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.25em;
+            padding: 10px 28px;
+            text-transform: uppercase;
         }
 
-        .footer-grid {
+        /* COLLECTIONS */
+        #home-collections { padding: 32px 16px; background: #fff; }
+        .collections-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1240px;
-            margin: 0 auto 60px auto;
+            gap: 12px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-
-        .footer-col h4 {
-            color: #000;
-            font-weight: 600;
+        .collection-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            height: 220px;
+            background: #222;
+        }
+        .collection-card img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        .collection-card:hover img { transform: scale(1.08); }
+        .collection-card .overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+            display: flex; align-items: flex-end;
+            padding: 20px;
+        }
+        .collection-card .label {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
+            border-bottom: 1.5px solid var(--gold);
+            padding-bottom: 3px;
+        }
+
+        /* CATALOGUE */
+        #catalogue-section { padding: 48px 16px; background: #fafafa; }
+        .catalogue-header { text-align: center; margin-bottom: 36px; }
+        .catalogue-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+        .catalogue-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: 0.05em;
+        }
+
+        /* PRODUCT CARDS */
+        #products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) { #products-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 1024px) { #products-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .product-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #ececec;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .product-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.12); transform: translateY(-3px); }
+        .product-img-wrap {
+            background: #f8f8f8;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 16px;
+        }
+        .product-img-wrap img {
+            width: 100%; height: 100%;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-img-wrap img { transform: scale(1.06); }
+        .product-info { padding: 12px 14px 14px; }
+        .product-name { font-size: 11px; font-weight: 600; color: #111; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.4; margin-bottom: 4px; }
+        .product-price { font-size: 13px; font-weight: 700; color: var(--gold-dark); }
+        .product-badge { position: absolute; top: 10px; left: 10px; background: var(--black); color: var(--gold); font-size: 9px; font-weight: 700; letter-spacing: 0.15em; padding: 3px 8px; text-transform: uppercase; border-radius: 3px; }
+        .btn-buy {
+            width: 100%;
+            background: var(--black);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 11px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+            border-radius: 6px;
+        }
+        .btn-buy:hover { background: var(--gold-dark); }
+
+        /* REVIEWS */
+        #home-reviews { padding: 56px 20px; background: var(--black); text-align: center; }
+        .review-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(22px, 4vw, 36px);
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .review-stars-global { color: var(--gold); font-size: 18px; display: flex; justify-content: center; gap: 4px; margin-bottom: 4px; }
+        .review-count { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; margin-bottom: 32px; }
+        .review-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(201,168,76,0.2);
+            border-radius: 16px;
+            padding: 32px 28px;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 200px;
+        }
+        .review-quote { font-size: 14px; color: rgba(255,255,255,0.82); font-style: italic; line-height: 1.8; margin: 12px 0 20px; }
+        .review-author { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+        .review-thumb { width: 44px; height: 44px; border-radius: 8px; object-fit: contain; border: 1px solid rgba(201,168,76,0.3); padding: 4px; background: #fff; margin: 10px auto 0; display: block; }
+        .review-nav-btn {
+            position: absolute;
+            top: 50%; transform: translateY(-50%);
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(201,168,76,0.25);
+            color: rgba(255,255,255,0.6);
             font-size: 12px;
-            margin-bottom: 24px;
-            letter-spacing: 1px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .review-nav-btn:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+        .review-nav-prev { left: -16px; }
+        .review-nav-next { right: -16px; }
+
+        /* FOOTER */
+        footer {
+            background: var(--charcoal);
+            color: rgba(255,255,255,0.75);
+            padding: 56px 24px 32px;
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 36px; max-width: 1200px; margin: 0 auto 40px; }
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(3, 1fr); } }
+        .footer-title { font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 18px; }
+        .footer-link { display: block; font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 10px; background: none; border: none; cursor: pointer; text-align: left; padding: 0; transition: color 0.2s; }
+        .footer-link:hover { color: var(--gold); }
+        .footer-copy { text-align: center; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.08em; max-width: 1200px; margin: 0 auto; }
+        .footer-email-wrap { display: flex; border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; overflow: hidden; }
+        .footer-email-wrap input { background: transparent; border: none; outline: none; color: #fff; font-size: 12px; padding: 10px 14px; flex: 1; }
+        .footer-email-wrap input::placeholder { color: rgba(255,255,255,0.3); }
+        .footer-email-wrap button { background: var(--gold); color: var(--black); font-size: 10px; font-weight: 800; letter-spacing: 0.15em; padding: 10px 16px; border: none; cursor: pointer; text-transform: uppercase; }
+
+        /* CART SIDEBAR */
+        #cartSidebar {
+            position: fixed; right: 0; top: 0; bottom: 0;
+            width: 100%; max-width: 400px;
+            background: #fff;
+            box-shadow: -4px 0 40px rgba(0,0,0,0.15);
+            z-index: 50;
+            display: flex; flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.32s cubic-bezier(.4,0,.2,1);
+        }
+        #cartSidebar.open { transform: translateX(0); }
+        #cartOverlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 49;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        #cartOverlay.open { opacity: 1; pointer-events: auto; }
+
+        .cart-header { padding: 18px 20px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; background: var(--black); color: #fff; }
+        .cart-header h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
+        .cart-body { flex: 1; overflow-y: auto; padding: 16px; }
+        .cart-footer { padding: 16px 20px; border-top: 1px solid #f0f0f0; background: #fafafa; }
+        .cart-item { display: flex; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid #f5f5f5; }
+        .cart-item-img { width: 52px; height: 52px; background: #f6f6f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .cart-item-img img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+        .cart-item-name { font-size: 11px; font-weight: 700; color: #111; text-transform: uppercase; }
+        .cart-item-size { font-size: 10px; color: #888; }
+        .cart-item-price { font-size: 12px; font-weight: 700; color: var(--gold-dark); margin-top: 2px; }
+        .qty-ctrl { display: flex; align-items: center; gap: 8px; border: 1px solid #e5e5e5; border-radius: 6px; padding: 4px 8px; }
+        .qty-ctrl button { background: none; border: none; font-size: 14px; cursor: pointer; color: #555; font-weight: 700; line-height: 1; }
+        .qty-ctrl span { font-size: 12px; font-weight: 700; min-width: 16px; text-align: center; }
+        .btn-checkout {
+            width: 100%;
+            background: var(--black);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 14px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .btn-checkout:hover { background: var(--gold-dark); }
+
+        /* PRODUCT PAGE */
+        #productPage {
+            display: none;
+            background: #fff;
+            min-height: 60vh;
+        }
+        .product-page-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        @media (min-width: 768px) {
+            .product-page-inner { grid-template-columns: 1fr 1fr; gap: 56px; }
+        }
+        .product-page-img-wrap {
+            background: #f8f8f8;
+            border-radius: 16px;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            overflow: hidden;
+        }
+        .product-page-img-wrap img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+        .product-page-info { display: flex; flex-direction: column; justify-content: center; }
+        .product-page-category { font-size: 10px; font-weight: 700; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+        .product-page-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 4vw, 38px); font-weight: 700; color: var(--black); line-height: 1.15; margin-bottom: 8px; }
+        .product-page-price { font-size: 22px; font-weight: 800; color: var(--black); margin-bottom: 20px; }
+        .product-page-price span { font-size: 13px; font-weight: 400; color: #888; margin-left: 8px; }
+        .size-label { font-size: 10px; font-weight: 700; letter-spacing: 0.25em; color: #888; text-transform: uppercase; margin-bottom: 10px; }
+        .size-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .size-btn {
+            width: 46px; height: 46px;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            background: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            color: #555;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.18s;
+        }
+        .size-btn:hover { border-color: var(--black); color: var(--black); }
+        .size-btn.selected { border-color: var(--black); background: var(--black); color: #fff; font-weight: 700; }
+        .size-btn.text-size { width: auto; padding: 0 14px; }
+
+        .trust-badges { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0 20px; }
+        .trust-badge { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #555; font-weight: 500; }
+        .trust-badge i { color: var(--gold); font-size: 13px; }
+
+        .stock-indicator { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: #16a34a; margin-bottom: 20px; }
+        .stock-dot { width: 8px; height: 8px; background: #16a34a; border-radius: 50%; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} }
+
+        .btn-add-cart {
+            width: 100%;
+            background: #fff;
+            border: 2px solid var(--black);
+            color: var(--black);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+        }
+        .btn-add-cart:hover { background: #f5f5f5; }
+        .btn-buy-now {
+            width: 100%;
+            background: var(--black);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+        }
+        .btn-buy-now:hover { background: var(--gold-dark); }
+
+        .secure-payment {
+            margin-top: 16px;
+            background: #f8f8f8;
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+        .secure-title { font-size: 11px; font-weight: 700; color: #111; letter-spacing: 0.08em; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+        .secure-title i { color: var(--gold); }
+        .secure-icons { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+        .secure-icon { background: #fff; border: 1px solid #e5e5e5; border-radius: 5px; padding: 5px 10px; font-size: 9px; font-weight: 800; letter-spacing: 0.08em; color: #333; }
+        .secure-icon.stripe { color: #635bff; }
+        .secure-icon.visa { color: #1a1f71; }
+        .secure-icon.mc { color: #eb001b; }
+
+        /* MODALS */
+        .modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 50;
+            display: flex; align-items: center; justify-content: center;
+            padding: 16px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.28s;
+        }
+        .modal-overlay.open { opacity: 1; pointer-events: auto; }
+        .modal-box {
+            background: #fff;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 440px;
+            padding: 28px;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.28s;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-overlay.open .modal-box { transform: scale(1); }
+        .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 20px; color: #aaa; cursor: pointer; line-height: 1; }
+        .modal-close:hover { color: #111; }
+
+        .legal-modal-box {
+            max-width: 640px;
+        }
+        .legal-content { font-size: 12px; color: #555; line-height: 1.75; }
+        .legal-content p { margin-bottom: 10px; }
+        .legal-content .section-title { font-size: 13px; font-weight: 700; color: #111; margin-top: 18px; margin-bottom: 6px; }
+
+        /* SEARCH */
+        #searchInput {
+            border: 1.5px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 7px 14px 7px 36px;
+            font-size: 12px;
+            outline: none;
+            width: 200px;
+            transition: width 0.3s, border-color 0.2s;
+        }
+        #searchInput:focus { border-color: var(--gold); width: 240px; }
+        .search-wrap { position: relative; }
+        .search-wrap i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #aaa; font-size: 13px; }
+
+        /* BACK BUTTON */
+        .back-btn {
+            background: none;
+            border: 1.5px solid var(--black);
+            color: var(--black);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 12px;
+        }
+        .back-btn:hover { background: var(--black); color: #fff; }
+
+        /* CART BADGE */
+        .cart-badge-wrap { position: relative; }
+        #cart-count-badge {
+            position: absolute;
+            top: -8px; right: -8px;
+            background: var(--gold);
+            color: var(--black);
+            font-size: 9px;
+            font-weight: 800;
+            width: 17px; height: 17px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 14px; }
-        .footer-col ul li a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-        .footer-col ul li a:hover { color: #000; }
-
-        .legal-box { max-height: 450px; overflow-y: auto; font-size: 13px; line-height: 1.7; color: #333; padding-right: 12px; }
-        .legal-box h5 { margin: 22px 0 8px 0; color: #000; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; border-bottom: 1px solid #eee; padding-bottom: 4px; }
-        .legal-box p { margin-bottom: 12px; }
-
-        /* --- STYLES ET MENUS ADAPTÉS POUR LE MOBILE --- */
-        @media (max-width: 1024px) { 
-            .products-grid { grid-template-columns: repeat(3, 1fr); } 
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 767px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            #searchInput { display: none !important; }
+            .search-wrap { display: none; }
+            .collections-grid { grid-template-columns: 1fr; gap: 10px; }
+            .collection-card { height: 180px; }
+            .review-nav-prev { left: -10px; }
+            .review-nav-next { right: -10px; }
+            .product-page-inner { padding: 24px 16px; }
+        }
+        @media (min-width: 768px) {
+            .hamburger { display: none; }
+            .collections-grid { grid-template-columns: repeat(3, 1fr); }
+            .collection-card { height: 260px; }
         }
 
-        @media (max-width: 768px) {
-            header {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 4%;
-                position: relative;
-            }
-            .header-left {
-                width: 100%;
-                justify-content: center;
-                order: 2;
-            }
-            nav ul {
-                justify-content: center;
-                gap: 8px;
-            }
-            nav ul li a {
-                font-size: 11px;
-                padding: 6px 10px;
-            }
-            .logo-container {
-                order: 1;
-            }
-            .header-right {
-                width: 100%;
-                justify-content: center;
-                order: 3;
-                gap: 15px;
-            }
-            .search-box input {
-                width: 140px;
-            }
-            .hero-banner {
-                height: 45vh;
-            }
-            .hero-content h2 {
-                font-size: 28px;
-                letter-spacing: 3px;
-            }
-            .hero-content p {
-                font-size: 12px;
-                margin-bottom: 20px;
-            }
-            .btn-shop-now {
-                padding: 12px 30px;
-                font-size: 11px;
-            }
-            .catalogues-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            .products-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 20px 12px;
-            }
-            .modal-content { 
-                grid-template-columns: 1fr; 
-                max-height: 90vh; 
-                overflow-y: auto; 
-                padding: 20px;
-            }
-            .footer-grid { 
-                grid-template-columns: 1fr; 
-                gap: 30px;
-                text-align: center;
-            }
+        /* TOAST */
+        #toast {
+            position: fixed;
+            bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+            background: var(--black);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            padding: 12px 24px;
+            border-radius: 30px;
+            z-index: 999;
+            transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+            border-left: 3px solid var(--gold);
+            white-space: nowrap;
         }
-
-        @media (max-width: 440px) { 
-            .cart-sidebar { 
-                width: 100%; 
-                right: -100%; 
-                padding: 20px;
-            } 
-            nav ul li a {
-                font-size: 10px;
-                padding: 4px 6px;
-            }
-            .logo-text {
-                font-size: 18px;
-                letter-spacing: 3px;
-            }
-            .logo-icon {
-                font-size: 24px;
-                padding: 2px 10px;
-            }
-        }
+        #toast.show { transform: translateX(-50%) translateY(0); }
     </style>
 </head>
 <body>
 
-    <div class="toast-notification" id="toast-notif">Article ajouté au panier d'achat</div>
-
-    <div class="cookie-overlay" id="cookie-popup">
-        <div class="cookie-box">
-            <h3>Respect de la vie privée</h3>
-            <p>Notre site de Haute Maroquinerie requiert l'utilisation de cookies fonctionnels de session nécessaires pour retenir votre panier d'achat et sécuriser votre commande.</p>
-            <div class="cookie-buttons">
-                <button class="btn-cookie-accept" onclick="acceptCookies()">Tout Accepter</button>
-                <button class="btn-cookie-refuse" onclick="acceptCookies()">Continuer sans accepter</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="top-bar">La livraison d'exception est offerte à partir de 100€ d'achat</div>
-
-    <header>
-        <div class="header-left">
-            <nav>
-                <ul>
-                    <li><a href="#" class="active-btn" id="nav-home" onclick="showHome()">Accueil</a></li>
-                    <li><a href="#" id="nav-oran" onclick="filterCollection('oran')">Collection Oran</a></li>
-                    <li><a href="#" id="nav-chypre" onclick="filterCollection('chypre')">Collection Chypre</a></li>
-                    <li><a href="#" id="nav-empire" onclick="filterCollection('empire')">Collection Empire</a></li>
-                    <li><a href="#" id="nav-oasis" onclick="filterCollection('oasis')">Collection Oasis</a></li>
-                    <li><a href="#" id="nav-sneakers" onclick="filterCollection('sneakers')">Chaussures</a></li>
-                </ul>
-            </nav>
-        </div>
-        
-        <div class="logo-container" onclick="showHome()">
-            <div class="logo-icon">H</div>
-            <div class="logo-text">Luxury</div>
-        </div>
-        
-        <div class="header-right">
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="Rechercher un modèle..." onkeyup="handleSearch()">
-            </div>
-            <button class="icon-btn" onclick="toggleAuthModal(true)">
-                <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            </button>
-            <button class="icon-btn" onclick="toggleCart(true)">
-                <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                <div class="cart-count" id="cart-count">0</div>
-            </button>
-        </div>
-    </header>
-
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <span>🔥 OFFRE EXCEPTIONNELLE DE SAISON</span>
-            <span>✨ -10% DE RÉDUCTION SUR TOUT LE SITE AVEC LE CODE : <b>hluxury10</b></span>
-            <span>TOUTES NOS SANDALES ET SNEAKERS À PARTIR DE 64,90€</span>
-            <span>⚡ OFFRE LIMITÉE DANS LA LIMITE DES STOCKS DISPONIBLES</span>
-            <span>📦 LIVRAISON SÉCURISÉE OFFERTE DÈS 100€ D'ACHAT</span>
-        </div>
-    </div>
-
-    <div id="hero-section" class="hero-banner">
-        <img id="hero-main-img" src="" alt="Bannière Principale H Luxury" class="hero-bg-img">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h2>Collection Été</h2>
-            <p>Lignes pures et matières d'exception.</p>
-            <button class="btn-shop-now" onclick="filterCollection('oran')">Découvrir les Souliers</button>
-        </div>
-    </div>
-
-    <section class="catalogues-section" id="catalogues-section">
-        <div class="catalogues-grid">
-            <div class="catalogue-banner-card" onclick="filterCollection('oran')">
-                <img id="catalogue-img-femme" src="" alt="Collection Oran" class="catalogue-banner-img">
-                <div class="catalogue-banner-overlay"></div>
-                <div class="catalogue-banner-text">
-                    <h2>Gamme Oran</h2>
-                    <span>Voir l'iconique</span>
-                </div>
-            </div>
-            <div class="catalogue-banner-card" onclick="filterCollection('sneakers')">
-                <img id="catalogue-img-homme" src="" alt="Collection Sneakers" class="catalogue-banner-img">
-                <div class="catalogue-banner-overlay"></div>
-                <div class="catalogue-banner-text">
-                    <h2>Gamme Sneakers</h2>
-                    <span>Parcourir l'asphalte</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="filter-wrapper" id="filter-wrapper">
-        <select class="filter-select" id="price-filter" onchange="applyPriceFilter()">
-            <option value="all">Tous les prix</option>
-            <option value="low">Moins de 70.00 €</option>
-            <option value="high">70.00 € et plus</option>
-        </select>
-    </div>
-
-    <main class="container">
-        <h2 class="section-title" id="page-dynamic-title">Les Pièces Iconiques</h2>
-        <div class="products-grid" id="products-container"></div>
-    </main>
-
-    <div class="modal" id="auth-modal" onclick="closeAuthModalOnBackdrop(event)">
-        <div class="modal-content" style="max-width: 400px; display: block;">
-            <div class="modal-close" onclick="toggleAuthModal(false)">&times;</div>
-            <h3 style="font-family:'Cinzel', serif; font-size:18px; margin-bottom:20px; text-align:center;">Se connecter</h3>
-            <form onsubmit="handleLogin(event)">
-                <label style="font-size:11px; font-weight:600; text-transform:uppercase; display:block; margin-bottom:6px;">Adresse Email</label>
-                <input type="email" class="input-field" required placeholder="exemple@gmail.com">
-                
-                <label style="font-size:11px; font-weight:600; text-transform:uppercase; display:block; margin-bottom:6px;">Mot de passe</label>
-                <input type="password" class="input-field" required placeholder="••••••••">
-                
-                <button type="submit" class="btn-add-cart">Se connecter</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal" id="legal-modal" onclick="closeLegalModalOnBackdrop(event)">
-        <div class="modal-content" style="max-width:680px; display:block;">
-            <div class="modal-close" onclick="toggleLegalModal(false)">&times;</div>
-            <h3 id="legal-modal-title" style="text-transform:uppercase; font-weight:600; margin-bottom:20px; font-size:16px; color:#000; letter-spacing:1px; font-family:'Cinzel', serif;"></h3>
-            <div class="legal-box" id="legal-modal-body"></div>
-        </div>
-    </div>
-
-    <div class="modal" id="product-modal" onclick="closeModalOnBackdrop(event)">
-        <div class="modal-content">
-            <div class="modal-close" onclick="toggleModal(false)">&times;</div>
-            <div class="modal-left">
-                <img id="modal-img" src="">
-            </div>
-            <div class="modal-right">
-                <h3 id="modal-title" style="font-size:22px; font-weight:500; margin-bottom:12px; color:#111;"></h3>
-                
-                <div style="margin-bottom:15px; display:flex; align-items:center; flex-wrap:wrap;">
-                    <span class="current-price" id="modal-current-price" style="font-size:18px; font-weight:600; color:var(--price-red);"></span>
-                    <span class="old-price" id="modal-old-price" style="font-size:15px; margin-right:5px;"></span>
-                    <div id="modal-promo-badge" class="promo-badge"></div>
-                </div>
-                
-                <div class="live-cart-badge">
-                    🔥 15 ajouts au panier récents
-                </div>
-                
-                <label style="font-size:12px; text-transform:capitalize; color:#222; margin-bottom:6px; display:block; font-weight:500;">Taille</label>
-                <select id="modal-size" style="margin-bottom:15px;"></select>
-
-                <label style="font-size:12px; text-transform:capitalize; color:#222; margin-bottom:6px; display:block; font-weight:500;">Quantité</label>
-                <div class="quantity-selector">
-                    <button type="button" onclick="changeQuantity(-1)">-</button>
-                    <span id="product-qty">1</span>
-                    <button type="button" onclick="changeQuantity(1)">+</button>
-                </div>
-                
-                <button class="btn-add-cart" onclick="addToCartFromModal()">AJOUTER AU PANIER</button>
-                
-                <div class="payment-icons-box" style="margin-top: 25px;">
-                    <div class="payment-logo-badge">PayPal</div>
-                    <div class="payment-logo-badge">Apple Pay</div>
-                    <div class="payment-logo-badge">CB</div>
-                    <div class="payment-logo-badge">Mastercard</div>
-                    <div class="payment-logo-badge">Visa</div>
-                </div>
-                
-                <div class="trust-footer-mention">
-                    <span style="font-size:12px;">🔒</span> Paiement 100% sécurisé • Qualité d'exception
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="cart-sidebar" id="cart-sidebar">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; border-bottom:1px solid #eee; padding-bottom:16px;">
-            <h3 style="font-size:16px; font-weight:600; text-transform:uppercase; letter-spacing:1px;">Mon Panier</h3>
-            <span style="cursor:pointer; font-size:28px; color:#aaa;" onclick="toggleCart(false)">&times;</span>
-        </div>
-        <div class="cart-items" id="cart-items-container"></div>
-        <div style="border-top:1px solid #eee; padding-top:25px;">
-            <div style="display:flex; justify-content:space-between; margin-bottom:24px; font-size:16px; font-weight:600;">
-                <span>Total Estimé :</span>
-                <span id="cart-total-amount" style="color:var(--price-red);">0.00 €</span>
-            </div>
-            
-            <!-- Zone où le bouton intelligent de PayPal va s'insérer de manière sécurisée -->
-            <div id="paypal-button-container" style="min-height: 45px;"></div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>Service Client</h4>
-                <ul>
-                    <li><a href="#" onclick="openLegal('contact')">Nous Contacter</a></li>
-                    <li><a href="#" onclick="openLegal('livraison')">Livraison & Retours d'Exception</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>La Maison</h4>
-                <ul>
-                    <li><a href="#" onclick="openLegal('mentions')">Mentions Légales</a></li>
-                    <li><a href="#" onclick="openLegal('cgv')">Conditions Générales de Vente</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Confidentialité</h4>
-                <ul>
-                    <li><a href="#" onclick="openLegal('privacy')">Protection des Données</a></li>
-                    <li><a href="#" onclick="openLegal('cookies')">Cookies & Préférences</a></li>
-                </ul>
-            </div>
-        </div>
-        <div style="border-top:1px solid var(--border-light); padding-top:25px; text-align:center; font-size:12px; color:#999;">
-            <p>&copy; 2026 H LUXURY — Maison de Haute Création Paris-Montpellier. Tous droits réservés.</p>
-        </div>
-    </footer>
-
-    <script>
-        const BANNER_CONFIG = {
-            imageHero: "banniere.jpg",
-            imageCatalogueFemme: "LIEN_IMAGE_FEMME", 
-            imageCatalogueHomme: "LIEN_IMAGE_HOMME"  
-        };
-
-        const products = [
-            { id: 1, name: "Sandales Oran - Tow", price: 64.90, oldPrice: 120.00, img: "oran-tow.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Tow"] },
-            { id: 2, name: "Sandales Oran - Vert Jade", price: 64.90, oldPrice: 120.00, img: "oran-vert-jade.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Vert Jade"] },
-            { id: 3, name: "Sandales Oran - Vert Oyat", price: 64.90, oldPrice: 120.00, img: "oran-vert-oyat.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Vert Oyat"] },
-            { id: 4, name: "Sandales Oran - Violet Foncé", price: 99.90, oldPrice: 0, img: "oran-violet-fonce.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Violet Foncé"] },
-            { id: 5, name: "Sandales Oran - Blanc Pur", price: 64.90, oldPrice: 120.00, img: "oran-blanc.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Blanc Pur"] },
-            { id: 6, name: "Sandales Oran - Noir Ébène", price: 64.90, oldPrice: 120.00, img: "oran-noir.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Noir Ébène"] },
-            { id: 7, name: "Sneakers Bouncing - All Black", price: 129.90, oldPrice: 0, img: "bouncing-all-black.jpg", collection: "sneakers", sizes: [40,41,42,43,44,45], colors: ["All Black"] },
-            { id: 8, name: "Sneakers Bouncing - Blanc Signé", price: 129.90, oldPrice: 0, img: "bouncing-blanc.jpg", collection: "sneakers", sizes: [40,41,42,43,44,45], colors: ["Blanc Signé"] },
-            { id: 9, name: "Sandales Oran - Noir V2", price: 64.90, oldPrice: 120.00, img: "oran-noir-v2.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Noir V2"] },
-            { id: 10, name: "Sandales Oran - Teinte Or", price: 64.90, oldPrice: 120.00, img: "oran-or.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Teinte Or"] },
-            { id: 11, name: "Sandales Oran - Orange Mouton", price: 99.90, oldPrice: 0, img: "oran-orange-mouton.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Orange Mouton"] },
-            { id: 12, name: "Sandales Oran - Orange Moumoute", price: 99.90, oldPrice: 0, img: "oran-orange-moumoute.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Orange Moumoute"] },
-            { id: 13, name: "Sandales Oran - Pétale de Rose", price: 64.90, oldPrice: 120.00, img: "oran-pétale-rose.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Pétale de Rose"] },
-            { id: 14, name: "Sandales Oran - Porcelaine Rose Clous", price: 64.90, oldPrice: 150.00, img: "oran-porcelaine-rose-clous.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Porcelaine Rose Clous"] },
-            { id: 15, name: "Sandales Oran - Porcelaine Rose Mat", price: 64.90, oldPrice: 120.00, img: "oran-porcelaine-rose.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Porcelaine Rose Mat"] },
-            { id: 16, name: "Sandales Oran - Purple Majorette", price: 64.90, oldPrice: 120.00, img: "oran-purple-majorette.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Purple Majorette"] },
-            { id: 17, name: "Sandales Oran - Gris Antarctique", price: 64.90, oldPrice: 120.00, img: "oran-gris-antarctique.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Gris Antarctique"] },
-            { id: 18, name: "Sandales Oran - Ivy Green", price: 64.90, oldPrice: 120.00, img: "oran-ivy-green.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Ivy Green"] },
-            { id: 19, name: "Sandales Oran - Jaune Bouton d'or", price: 64.90, oldPrice: 120.00, img: "oran-jaune-bouton-dor.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Jaune Bouton d'or"] },
-            { id: 20, name: "Sandales Oran - Jaune Citron", price: 64.90, oldPrice: 120.00, img: "oran-jaune-citron.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Jaune Citron"] },
-            { id: 21, name: "Sandales Oran - Jaune Impérial", price: 64.90, oldPrice: 120.00, img: "oran-jaune-imperial.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Jaune Impérial"] },
-            { id: 22, name: "Sandales Oran - Jaune Topaze", price: 64.90, oldPrice: 140.00, img: "oran-jaune-topaze.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Jaune Topaze"] },
-            { id: 23, name: "Sandales Oran - Laiton Jaune", price: 64.90, oldPrice: 120.00, img: "oran-laiton-jaune.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Laiton Jaune"] },
-            { id: 24, name: "Sandales Oran - Naturel", price: 64.90, oldPrice: 120.00, img: "oran-naturel.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Naturel"] },
-            { id: 25, name: "Sandales Oran - Beige Moumoute", price: 99.90, oldPrice: 0, img: "oran-beige-moumoute.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Beige Moumoute"] },
-            { id: 26, name: "Sandales Oran - Bleu Brut", price: 64.90, oldPrice: 145.00, img: "oran-bleu-brut.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Bleu Brut"] },
-            { id: 27, name: "Sandales Oran - Bleu Clair", price: 64.90, oldPrice: 145.00, img: "oran-bleu-clair.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Bleu Clair"] },
-            { id: 28, name: "Sandales Oran - Bleu du Nord", price: 64.90, oldPrice: 120.00, img: "oran-bleu-nord.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Bleu du Nord"] },
-            { id: 29, name: "Sandales Oran - Bleu Océan", price: 99.90, oldPrice: 0, img: "oran-bleu-ocean.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Bleu Océan"] },
-            { id: 30, name: "Sandales Oran - Bleu Thalassa", price: 64.90, oldPrice: 120.00, img: "oran-bleu-thalassa.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Bleu Thalassa"] },
-            { id: 31, name: "Sandales Oran - Blue Cameo", price: 64.90, oldPrice: 120.00, img: "oran-blue-cameo.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Blue Cameo"] },
-            { id: 32, name: "Sandales Oran - Epsom Bleu", price: 64.90, oldPrice: 120.00, img: "oran-epsom-bleu.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Epsom Bleu"] },
-            { id: 33, name: "Sandales Oasis - Blanc Éclat", price: 79.90, oldPrice: 120.00, img: "oasis-blanc.jpg", collection: "oasis", sizes: [36,37,38,39,40,41], colors: ["Blanc Éclat"] },
-            { id: 34, name: "Sandales Oran - Vert Menthe", price: 64.90, oldPrice: 120.00, img: "oran-vert-pauvre.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Vert Menthe"] },
-            { id: 35, name: "Sandales Oran - Argent Chromé", price: 64.90, oldPrice: 120.00, img: "oran-argent.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Argent Chromé"] },
-            { id: 36, name: "Sandales Empire - Blanc Signature", price: 79.90, oldPrice: 150.00, img: "empire-blanc.jpg", collection: "empire", sizes: [35,36,37,38,39,40,41], colors: ["Blanc Signature"] },
-            { id: 37, name: "Sandales Empire - Noir Signature", price: 79.90, oldPrice: 150.00, img: "empire-noir.jpg", collection: "empire", sizes: [36,37,38,39,40,41], colors: ["Noir Signature"] },
-            { id: 38, name: "Sandales Empire - Noir Porcelaine", price: 79.90, oldPrice: 150.00, img: "empire-noir-porcelaine.jpg", collection: "empire", sizes: [36,37,38,39,40,41], colors: ["Noir Porcelaine"] },
-            { id: 39, name: "Sandales Oasis - Bleu Intense", price: 79.90, oldPrice: 120.00, img: "oasis-bleu.jpg", collection: "oasis", sizes: [36,37,38,39,40,41], colors: ["Bleu Intense"] },
-            { id: 40, name: "Sandales Oasis - Gold Classique", price: 79.90, oldPrice: 120.00, img: "oasis-gold.jpg", collection: "oasis", sizes: [36,37,38,39,40,41], colors: ["Gold Classique"] },
-            { id: 41, name: "Sandales Oasis - Noir Satin", price: 79.90, oldPrice: 120.00, img: "oasis-noir.jpg", collection: "oasis", sizes: [36,37,38,39,40,41], colors: ["Noir Satin"] },
-            { id: 42, name: "Sandales Oasis - Red Passion", price: 79.90, oldPrice: 120.00, img: "oasis-red.jpg", collection: "oasis", sizes: [36,37,38,39,40,41], colors: ["Red Passion"] },
-            { id: 43, name: "Sandales Oasis - Rose Magenta", price: 79.90, oldPrice: 120.00, img: "oasis-rose-magenta.jpg", collection: "oasis", sizes: [36,37,38,39,40,41], colors: ["Rose Magenta"] },
-            { id: 44, name: "Sandales Chypre - Orange H", price: 70.00, oldPrice: 140.00, img: "chypre-orange.jpg", collection: "chypre", sizes: [36,37,38,39,40,41], colors: ["Orange H"] },
-            { id: 45, name: "Sandales Chypre - Pru Noir", price: 70.00, oldPrice: 140.00, img: "chypre-pru-noir.jpg", collection: "chypre", sizes: [40,41,42,43,44,45], colors: ["Pru Noir"] },
-            { id: 46, name: "Sandales Chypre - Rose Chapas", price: 74.90, oldPrice: 120.00, img: "chypre-rose-chapas.jpg", collection: "chypre", sizes: [36,37,38,39,40,41], colors: ["Rose Chapas"] },
-            { id: 47, name: "Sandales Chypre - Vert Forêt", price: 70.00, oldPrice: 140.00, img: "chypre-vert.jpg", collection: "chypre", sizes: [36,37,38,39,40,41], colors: ["Vert Forêt"] },
-            { id: 48, name: "Sandales Chypre - Blanc Craie", price: 70.00, oldPrice: 140.00, img: "chypre-blanc.jpg", collection: "chypre", sizes: [36,37,38,39,40,41], colors: ["Blanc Craie"] },
-            { id: 49, name: "Sandales Chypre - Marron Muscavado", price: 99.90, oldPrice: 140.00, img: "chypre-marron-muscavado.jpg", collection: "chypre", sizes: [36,37,38,39,40,41], colors: ["Marron Muscavado"] },
-            { id: 50, name: "Sandales Chypre - Natural Leather", price: 70.00, oldPrice: 140.00, img: "chypre-natural.jpg", collection: "chypre", sizes: [36,37,38,39,40,41], colors: ["Natural Leather"] },
-            { id: 51, name: "Sandales Chypre - Noir Mat", price: 70.00, oldPrice: 140.00, img: "chypre-noir.jpg", collection: "chypre", sizes: [40,41,42,43,44,45], colors: ["Noir Mat"] },
-            { id: 52, name: "Sandales Chypre - Bleu Ciel", price: 70.00, oldPrice: 140.00, img: "chypre-bleu-ciel.jpg", collection: "chypre", sizes: [36,37,38,39,40,41], colors: ["Bleu Ciel"] },
-            { id: 53, name: "Sandales Chypre - Gris Anthracite", price: 70.00, oldPrice: 140.00, img: "chypre-gris.jpg", collection: "chypre", sizes: [40,41,42,43,44,45], colors: ["Gris Anthracite"] },
-            { id: 54, name: "Mules Claquettes - Vert de Mer", price: 64.90, oldPrice: 120.00, img: "claquettes-vert-de-mer.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Vert de Mer"] },
-            { id: 55, name: "Mules Claquettes - Vert Viride", price: 64.90, oldPrice: 120.00, img: "claquettes-vert-viride.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Vert Viride"] },
-            { id: 56, name: "Sneakers Bouncing - Écru", price: 129.90, oldPrice: 0, img: "bouncing-ecru.jpg", collection: "sneakers", sizes: [36,37,38,39,40,41], colors: ["Écru"] },
-            { id: 57, name: "Mules Claquettes - Beige Natura", price: 64.90, oldPrice: 120.00, img: "claquettes-beige-natura.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Beige Natura"] },
-            { id: 58, name: "Mules Claquettes - Beige Perlino", price: 64.90, oldPrice: 120.00, img: "claquettes-beige-perlino.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Beige Perlino"] },
-            { id: 59, name: "Mules Claquettes - Orange Capucine", price: 64.90, oldPrice: 145.00, img: "claquettes-orange-capucine.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Orange Capucine"] },
-            { id: 60, name: "Mules Claquettes - Rose Cancan", price: 64.90, oldPrice: 145.00, img: "claquettes-rose-cancan.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Rose Cancan"] },
-            { id: 61, name: "Mules Claquettes - Rose de Venise", price: 64.90, oldPrice: 120.00, img: "claquettes-rose-de-venise.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Rose de Venise"] },
-            { id: 62, name: "Mules Claquettes - Rose Porcelaine", price: 64.90, oldPrice: 120.00, img: "claquettes-rose-porcelaine.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Rose Porcelaine"] },
-            { id: 63, name: "Mules Claquettes - Vert Bouteille", price: 64.90, oldPrice: 120.00, img: "claquettes-vert-bouteille.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Vert Bouteille"] },
-            { id: 64, name: "Mules Claquettes - Vert d'Eau", price: 64.90, oldPrice: 120.00, img: "claquettes-vert-deau.jpg", collection: "oran", sizes: [36,37,38,39,40,41], colors: ["Vert d'Eau"] }
-        ];
-
-        const BEST_SELLERS_IDS = [5, 6, 7, 51]; 
-
-        let cart = [];
-        let currentProductId = null;
-        let currentCategory = 'home'; 
-        let currentQuantity = 1;
-
-        function acceptCookies() { document.getElementById('cookie-popup').style.display = 'none'; }
-
-        function toggleAuthModal(show) { document.getElementById('auth-modal').classList.toggle('active', show); }
-        function closeAuthModalOnBackdrop(e) { if(e.target.id === 'auth-modal') toggleAuthModal(false); }
-        function handleLogin(e) { e.preventDefault(); alert("Connexion réussie ! Bienvenue dans votre espace H Luxury."); toggleAuthModal(false); }
-
-        function initBanners() {
-            document.getElementById('hero-main-img').src = BANNER_CONFIG.imageHero;
-            document.getElementById('catalogue-img-femme').src = BANNER_CONFIG.imageCatalogueFemme;
-            document.getElementById('catalogue-img-homme').src = BANNER_CONFIG.imageCatalogueHomme;
-        }
-
-        function displayProducts(items) {
-            const container = document.getElementById('products-container');
-            container.innerHTML = '';
-            
-            if(items.length === 0) {
-                container.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 50px; color:#888;">Aucun produit ne correspond à ces critères.</div>`;
-                return;
-            }
-
-            items.forEach(p => {
-                let priceHTML = p.oldPrice > 0 
-                    ? `<span class="current-price">${p.price.toFixed(2)} €</span><span class="old-price">${p.oldPrice.toFixed(2)} €</span>`
-                    : `<span class="current-price" style="color:#000;">${p.price.toFixed(2)} €</span>`;
-
-                container.innerHTML += `
-                    <div class="product-card">
-                        <div class="product-img-container" onclick="openProductModal(${p.id})">
-                            <img src="${p.img}" alt="${p.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f8f8f8%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2211%22 fill=%22%23ccc%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Photo</text></svg>'">
-                        </div>
-                        <div class="product-info">
-                            <div class="stars-container">
-                                <span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span>
-                            </div>
-                            <h3 class="product-title" onclick="openProductModal(${p.id})">${p.name}</h3>
-                            <div class="product-price-box">${priceHTML}</div>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function showHome() {
-            currentCategory = 'home';
-            document.getElementById('hero-section').style.display = 'flex';
-            document.getElementById('catalogues-section').style.display = 'block';
-            document.getElementById('filter-wrapper').style.display = 'none'; 
-            document.getElementById('page-dynamic-title').innerText = "Les Pièces Iconiques — Meilleures Ventes";
-            
-            const bestSellers = products.filter(p => BEST_SELLERS_IDS.includes(p.id));
-            displayProducts(bestSellers);
-            
-            document.querySelectorAll('nav ul li a').forEach(el => el.classList.remove('active-btn'));
-            document.getElementById('nav-home').classList.add('active-btn');
-        }
-
-        function filterCollection(collName) {
-            currentCategory = collName;
-            document.getElementById('hero-section').style.display = 'none';
-            document.getElementById('catalogues-section').style.display = 'none';
-            document.getElementById('filter-wrapper').style.display = 'flex'; 
-            document.getElementById('price-filter').value = 'all'; 
-            
-            const titleMapping = {
-                oran: "L'univers de la Sandale Oran",
-                chypre: "L'univers de la Sandale Chypre",
-                empire: "L'univers de la Sandale Empire",
-                oasis: "L'univers de la Sandale Oasis",
-                sneakers: "Gamme Complète Souliers & Sneakers"
-            };
-            
-            document.getElementById('page-dynamic-title').innerText = titleMapping[collName] || "Notre Sélection";
-            
-            displayProducts(products.filter(p => p.collection === collName));
-            document.querySelectorAll('nav ul li a').forEach(el => el.classList.remove('active-btn'));
-            const activeNav = document.getElementById(`nav-${collName}`);
-            if (activeNav) activeNav.classList.add('active-btn');
-        }
-
-        function applyPriceFilter() {
-            const criteria = document.getElementById('price-filter').value;
-            let filtered = products.filter(p => p.collection === currentCategory);
-
-            if(criteria === 'low') {
-                filtered = filtered.filter(p => p.price < 70);
-            } else if(criteria === 'high') {
-                filtered = filtered.filter(p => p.price >= 70);
-            }
-            displayProducts(filtered);
-        }
-
-        function handleSearch() {
-            const query = document.getElementById('search-input').value.toLowerCase().trim();
-            if(query.length > 0) {
-                document.getElementById('hero-section').style.display = 'none';
-                document.getElementById('catalogues-section').style.display = 'none';
-                document.getElementById('filter-wrapper').style.display = 'none';
-                displayProducts(products.filter(p => p.name.toLowerCase().includes(query)));
-            } else {
-                showHome();
-            }
-        }
-
-        function openProductModal(id) {
-            const p = products.find(prod => prod.id === id);
-            currentProductId = id;
-            currentQuantity = 1;
-            document.getElementById('product-qty').innerText = currentQuantity;
-            
-            document.getElementById('modal-img').src = p.img;
-            document.getElementById('modal-title').innerText = p.name;
-            document.getElementById('modal-current-price').innerText = `${p.price.toFixed(2)} €`;
-            
-            const badgeElement = document.getElementById('modal-promo-badge');
-            if (p.oldPrice > 0) {
-                document.getElementById('modal-old-price').style.display = 'inline';
-                document.getElementById('modal-old-price').innerText = `${p.oldPrice.toFixed(2)} €`;
-                
-                const percentSaved = Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100);
-                badgeElement.style.display = 'inline-flex';
-                badgeElement.innerHTML = `🏷️ Économisez ${percentSaved}%`;
-            } else {
-                document.getElementById('modal-old-price').style.display = 'none';
-                badgeElement.style.display = 'none';
-            }
-            
-            const selectSize = document.getElementById('modal-size');
-            selectSize.innerHTML = '';
-            p.sizes.forEach(size => {
-                selectSize.innerHTML += `<option value="${size}">${size}</option>`;
-            });
-
-            toggleModal(true);
-        }
-
-        function changeQuantity(amount) {
-            currentQuantity += amount;
-            if(currentQuantity < 1) currentQuantity = 1;
-            document.getElementById('product-qty').innerText = currentQuantity;
-        }
-
-        function toggleModal(show) { document.getElementById('product-modal').classList.toggle('active', show); }
-        function closeModalOnBackdrop(e) { if(e.target.id === 'product-modal') toggleModal(false); }
-        function toggleCart(show) { document.getElementById('cart-sidebar').classList.toggle('active', show); }
-
-        function addToCartFromModal() {
-            const p = products.find(prod => prod.id === currentProductId);
-            const size = document.getElementById('modal-size').value;
-            
-            for(let i = 0; i < currentQuantity; i++) {
-                cart.push({ ...p, selectedSize: size, selectedColor: p.colors[0] });
-            }
-            
-            updateCartUI();
-            toggleModal(false);
-            
-            const toast = document.getElementById('toast-notif');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2800);
-        }
-
-        function updateCartUI() {
-            document.getElementById('cart-count').innerText = cart.length;
-            const container = document.getElementById('cart-items-container');
-            container.innerHTML = '';
-            let total = 0;
-            cart.forEach((item, index) => {
-                total += item.price;
-                container.innerHTML += `
-                    <div class="cart-item">
-                        <img src="${item.itemImg || item.img}">
-                        <div style="flex:1;">
-                            <h4 style="font-size:12px; font-weight:600;">${item.name}</h4>
-                            <p style="font-size:11px; color:#888; margin: 2px 0;">Taille: ${item.selectedSize}</p>
-                            <p style="font-weight:600; color:var(--price-red); font-size:13px;">${item.price.toFixed(2)} €</p>
-                        </div>
-                        <span style="cursor:pointer; font-size:24px; color:#bbb;" onclick="cart.splice(${index},1); updateCartUI();">&times;</span>
-                    </div>
-                `;
-            });
-            const formattedTotal = total.toFixed(2);
-            document.getElementById('cart-total-amount').innerText = `${formattedTotal} €`;
-            
-            // Recharger le bouton intelligent PayPal dès que le panier change
-            initPayPalButton(formattedTotal);
-        }
-
-        // INITIALISATION UNIQUE DU BOUTON INTELLIGENT PAYPAL SÉCURISÉ
-        function initPayPalButton(totalAmount) {
-            const container = document.getElementById('paypal-button-container');
-            if(!container) return;
-            
-            // Vider le conteneur pour éviter les doublons de boutons
-            container.innerHTML = '';
-
-            if (parseFloat(totalAmount) <= 0 || cart.length === 0) {
-                return; 
-            }
-
-            if (typeof paypal !== 'undefined') {
-                paypal.Buttons({
-                    createOrder: function(data, actions) {
-                        return actions.order.create({
-                            purchase_units: [{
-                                description: "Commande Haute Maroquinerie - H Luxury",
-                                amount: {
-                                    currency_code: "EUR",
-                                    value: totalAmount
-                                }
-                            }]
-                        });
-                    },
-                    onApprove: function(data, actions) {
-                        return actions.order.capture().then(function(details) {
-                            alert('Paiement validé avec succès par PayPal ! Merci pour votre confiance, ' + details.payer.name.given_name + '.');
-                            cart = [];
-                            updateCartUI();
-                            toggleCart(false);
-                        });
-                    },
-                    onError: function(err) {
-                        console.error('Erreur PayPal SDK:', err);
-                        alert('Une erreur est survenue lors de la tentative de paiement. Veuillez réessayer.');
-                    }
-                }).render('#paypal-button-container');
-            }
-        }
-
-        const LEGAL_TEXTS = {
-            contact: `
-                <h5>Service Relations Clients</h5>
-                <p>Notre atelier est à votre entière disposition pour répondre à toutes vos exigences relatives à nos créations, à un suivi de commande ou à une demande de sur-mesure.</p>
-                <p><b>Adresse Électronique dédiée :</b> hluxury34000@gmail.com</p>
-                <p><b>Disponibilité :</b> Du lundi au samedi, de 9h00 à 19h00 (Heure de Paris).</p>
-                <p>Notre équipe s'engage à vous apporter une réponse personnalisée sous un délai maximal de 24 heures.</p>
-            `,
-            livraison: `
-                <h5>Expédition d'Exception</h5>
-                <p>Chaque pièce de la Maison H LUXURY est soigneusement enveloppée dans son écrin protecteur et expédiée via un transporteur sécurisé avec suivi et remise contre signature obligatoire.</p>
-                <h5>Délais et Tarifs</h5>
-                <p>• <b>Livraison Standard Sécurisée :</b> Offerte dès 100,00 € d'achat (sinon participation forfaitaire de 4,90 €). Expédiée sous 3 à 5 jours ouvrés.</p>
-                <p>• <b>Livraison Express Assurée :</b> 12,00 €. Expédiée sous 24 à 48 heures ouvrées.</p>
-                <h5>Retours simplifiés</h5>
-                <p>Conformément aux exigences de la haute couture, vous disposez d'un droit de rétraction de 14 jours à compter de la réception de votre colis. L'article doit être retourné complet, non porté et dans son emballage d'origine non altéré.</p>
-            `,
-            mentions: `
-                <h5>1. Édition du Site</h5>
-                <p>Le présent site accessible à l'adresse hluxury.com est édité par la Maison H LUXURY E-Commerce Inc., immatriculée au Registre du Commerce et des Lois (RCS) de Montpellier.</p>
-                <p><b>Direction de la publication :</b> Direction H LUXURY Studio.</p>
-                <h5>2. Hébergement</h5>
-                <p>Le site est hébergé de manière sécurisée sur des infrastructures conformes aux normes européennes d'intégrité numérique.</p>
-                <h5>3. Propriété Intellectuelle</h5>
-                <p>L'intégralité du contenu présent (textes, logos, photographies, structures logicielles) constitue une œuvre de l'esprit protégée par le Code de la propriété intellectuelle. Toute reproduction ou distribution sans accord préalable est strictement interdite.</p>
-            `,
-            cgv: `
-                <h5>Objet des Conditions</h5>
-                <p>Les présentes Conditions Générales de Vente régissent de plein droit toutes les transactions commerciales conclues entre l'acheteur et la Maison H LUXURY sur notre boutique en ligne.</p>
-                <h5>Commandes et Tarification</h5>
-                <p>Les prix affichés s'entendent en Euros (€) toutes taxes comprises (TTC). H LUXURY se réserve le droit de modifier ses tarifs à tout moment, mais les produits seront facturés sur la base du tarif en vigueur lors de la validation finale de la commande.</p>
-                <h5>Modalités de Règlement</h5>
-                <p>Le paiement est exigible immédiatement au moment de la commande. Les règlements s'effectuent via des passerelles bancaires hautement sécurisées et chiffrées (SSL/TLS).</p>
-            `,
-            privacy: `
-                <h5>Collecte des Données Personnelles</h5>
-                <p>La Maison H LUXURY s'engage à ce que la collecte et le traitement de vos données soient conformes au Règlement Général sur la Protection des Données (RGPD).</p>
-                <h5>Utilisation de vos données</h5>
-                <p>Vos informations (Email, Adresse de livraison, Historique) sont uniquement exploitées dans le but d'assurer la gestion de vos commandes, l'expédition de vos colis et l'envoi d'offres exclusives si vous le souhaitez.</p>
-                <h5>Vos Droits</h5>
-                <p>Vous disposez d'un droit permanent d'accès, de rectification, de portabilité et de suppression de l'ensemble de vos données nominatives sur simple demande à notre service client.</p>
-            `,
-            cookies: `
-                <h5>Gestion des Cookies</h5>
-                <p>Notre plateforme utilise exclusivement des traceurs techniques d'infrastructure d'intérêt public dits "strictement nécessaires". Ils permettent d'enregistrer l'état de votre panier, de mémoriser vos choix de tailles et d'assurer le maintien sécurisé de votre session de navigation.</p>
-                <p>Aucun cookie publicitaire tiers n'est implanté à votre insu. Vous pouvez configurer ou bloquer ces cookies à tout moment via les réglages de votre navigateur web.</p>
-            `
-        };
-
-        function openLegal(type) {
-            const title = document.getElementById('legal-modal-title');
-            const body = document.getElementById('legal-modal-body');
-            
-            const titlesMapping = {
-                contact: "Nous Contacter",
-                livraison: "Livraison & Retours d'Exception",
-                mentions: "Mentions Légales",
-                cgv: "Conditions Générales de Vente",
-                privacy: "Protection des Données (RGPD)",
-                cookies: "Gestion des Cookies"
-            };
-
-            title.innerText = titlesMapping[type] || "Information";
-            body.innerHTML = LEGAL_TEXTS[type] || "<p>Document en cours de mise à jour.</p>";
-            toggleLegalModal(true);
-        }
-
-        function toggleLegalModal(show) { document.getElementById('legal-modal').classList.toggle('active', show); }
-        function closeLegalModalOnBackdrop(e) { if(e.target.id === 'legal-modal') toggleLegalModal(false); }
-
-        window.onload = () => { 
-            initBanners(); 
-            showHome(); 
-        };
-    </script>
-
-<div id="review-toast" style="
-  position: fixed;
-  bottom: 20px;
-  left: -400px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  font-family: 'Segoe UI', Roboto, sans-serif;
-  z-index: 9999;
-  transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  width: 320px;
-  border-left: 4px solid #28a745;
-  box-sizing: border-box;
-">
-  <div style="margin-right: 12px;">
-    <div style="background: #28a745; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">✓</div>
-  </div>
-  <div style="display: flex; flex-direction: column;">
-    <p style="font-size: 13px; color: #333; margin: 0 0 4px 0; font-weight: bold;">
-      <span id="review-author">Prénom</span> — <span style="color: #ffc107;">★★★★★</span>
-    </p>
-    <p id="review-text" style="font-size: 12px; color: #555; margin: 0; font-style: italic; line-height: 1.4;">
-      "Super produit !"
-    </p>
-  </div>
+<!-- PROMO BAR -->
+<div class="promo-bar">
+    ⚡ VENTE FLASH : <span>-10%</span> SUR TOUTE LA BOUTIQUE AVEC LE CODE <span>AVRA10</span> ⚡
 </div>
 
+<!-- SHIPPING BAR -->
+<div class="shipping-bar-wrap">
+    <span id="shipping-promo-text">Plus que <strong id="shipping-needed">10,01€</strong> pour débloquer la <strong>Livraison Gratuite</strong></span>
+    <div style="width:80px;height:6px;background:#ddd;border-radius:3px;overflow:hidden;display:inline-block;">
+        <div id="shipping-bar" style="background:#22c55e;height:100%;width:85%;border-radius:3px;transition:width 0.5s;"></div>
+    </div>
+</div>
+
+<!-- NAV -->
+<nav class="main-nav">
+    <div class="hamburger" onclick="openMobileMenu()">
+        <span></span><span></span><span></span>
+    </div>
+    <div class="brand-name" onclick="showHomePage()">AVRA <span>LUXURY</span></div>
+    <div class="nav-links">
+        <button onclick="filterCategory('chaussures')">Chaussures</button>
+        <button onclick="filterCategory('vetements')">Vêtements</button>
+        <button onclick="filterCategory('accessoires')">Accessoires</button>
+    </div>
+    <div class="nav-icons">
+        <div class="search-wrap" style="display:none;" id="searchWrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Rechercher..." oninput="searchProducts()">
+        </div>
+        <i class="fa-solid fa-magnifying-glass" onclick="toggleSearch()" id="searchToggleIcon" style="display:block;"></i>
+        <i class="fa-solid fa-user" onclick="openLoginModal()" id="user-icon"></i>
+        <div class="cart-badge-wrap" onclick="toggleCart()" style="cursor:pointer;">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span id="cart-count-badge">0</span>
+        </div>
+    </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu" onclick="closeMobileMenuOnOverlay(event)">
+    <div id="mobileMenuPanel">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;letter-spacing:0.2em;">AVRA <span style="color:var(--gold);">LUXURY</span></span>
+            <button onclick="closeMobileMenu()" style="background:none;border:none;font-size:22px;cursor:pointer;color:#333;">&times;</button>
+        </div>
+        <button class="mobile-menu-link" onclick="showHomePage();closeMobileMenu()">Accueil</button>
+        <button class="mobile-menu-link" onclick="filterCategory('chaussures');closeMobileMenu()">Chaussures</button>
+        <button class="mobile-menu-link" onclick="filterCategory('vetements');closeMobileMenu()">Vêtements</button>
+        <button class="mobile-menu-link" onclick="filterCategory('accessoires');closeMobileMenu()">Accessoires</button>
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid #f0f0f0;">
+            <p style="font-size:10px;font-weight:700;letter-spacing:0.2em;color:#aaa;text-transform:uppercase;margin-bottom:10px;">Code promo</p>
+            <p style="font-size:14px;background:var(--black);color:var(--gold);padding:10px 16px;text-align:center;font-weight:800;letter-spacing:0.2em;">AVRA10</p>
+        </div>
+    </div>
+</div>
+
+<!-- HOME PAGE -->
+<div id="homePage">
+    <!-- HERO -->
+    <div id="home-hero">
+        <img src="banniere-accueil.jpg" alt="AVRA LUXURY" class="hero-bg">
+        <div class="hero-content">
+            <div class="hero-badge">Collection Exclusive 2025</div>
+            <div class="hero-title">AVRA <span>LUXURY</span></div>
+            <div class="hero-sub">Édition Premium — Style & Élégance</div>
+            <div class="hero-code">— 10% | CODE : AVRA10</div>
+        </div>
+    </div>
+
+    <!-- COLLECTIONS -->
+    <div id="home-collections">
+        <div class="collections-grid">
+            <div class="collection-card" onclick="filterCategory('chaussures')">
+                <img src="collection-chaussures.jpg" alt="CHAUSSURES">
+                <div class="overlay"><span class="label">Chaussures</span></div>
+            </div>
+            <div class="collection-card" onclick="filterCategory('vetements')">
+                <img src="collection-vetements.jpg" alt="VÊTEMENTS">
+                <div class="overlay"><span class="label">Vêtements</span></div>
+            </div>
+            <div class="collection-card" onclick="filterCategory('accessoires')">
+                <img src="collection-accessoires.jpg" alt="ACCESSOIRES">
+                <div class="overlay"><span class="label">Accessoires</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CATALOGUE -->
+<section id="catalogue-section" class="py-16 px-4">
+    <div class="catalogue-header">
+        <p class="catalogue-eyebrow">Sélection Exclusive</p>
+        <h2 class="catalogue-title" id="catalogue-title">Tous Nos Produits</h2>
+        <div id="back-home-box" style="display:none;margin-top:14px;">
+            <button class="back-btn" onclick="showHomePage()">← Retour à l'accueil</button>
+        </div>
+    </div>
+    <div id="products-grid"></div>
+</section>
+
+<!-- PRODUCT PAGE -->
+<div id="productPage">
+    <div style="max-width:1100px;margin:0 auto;padding:20px 16px 8px;">
+        <button class="back-btn" onclick="closeProductPage()">← Retour aux produits</button>
+    </div>
+    <div class="product-page-inner">
+        <div class="product-page-img-wrap">
+            <img id="pp-img" src="" alt="">
+        </div>
+        <div class="product-page-info">
+            <p class="product-page-category" id="pp-category"></p>
+            <h1 class="product-page-name" id="pp-name"></h1>
+            <p class="product-page-price" id="pp-price"></p>
+
+            <div class="stock-indicator">
+                <span class="stock-dot"></span>
+                En stock — Expédition sous 24-48h
+            </div>
+
+            <div>
+                <p class="size-label" id="pp-size-label">TAILLE</p>
+                <div class="size-grid" id="pp-sizes"></div>
+            </div>
+
+            <div class="trust-badges">
+                <div class="trust-badge"><i class="fa-solid fa-rotate-left"></i> Retour 14 jours</div>
+                <div class="trust-badge"><i class="fa-solid fa-truck"></i> Livraison offerte dès 150€</div>
+                <div class="trust-badge"><i class="fa-solid fa-medal"></i> Qualité Premium</div>
+            </div>
+
+            <button class="btn-add-cart" onclick="addToCartFromPage()">
+                <i class="fa-solid fa-bag-shopping" style="margin-right:8px;"></i>Ajouter au panier
+            </button>
+            <a id="pp-buy-link" href="#" target="_blank" class="btn-buy-now">
+                <i class="fa-solid fa-lock" style="margin-right:8px;"></i>Acheter — Paiement sécurisé
+            </a>
+
+            <div class="secure-payment">
+                <div class="secure-title">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Paiement 100% sécurisé & chiffré
+                </div>
+                <div class="secure-icons">
+                    <span class="secure-icon stripe">STRIPE</span>
+                    <span class="secure-icon visa">VISA</span>
+                    <span class="secure-icon mc">MASTERCARD</span>
+                    <span class="secure-icon">CB</span>
+                    <span class="secure-icon" style="color:#009cde;">PayPal</span>
+                </div>
+                <p style="font-size:10px;color:#aaa;margin-top:10px;"><i class="fa-solid fa-lock" style="color:var(--gold);margin-right:4px;"></i>Vos données sont protégées par cryptage SSL 256-bit</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- REVIEWS -->
+<section id="home-reviews" style="display:none;">
+    <div style="max-width:680px;margin:0 auto;">
+        <h2 class="review-title">Nos clients en parlent</h2>
+        <div class="review-stars-global" id="review-stars"></div>
+        <p class="review-count">5.0 sur 5 — 101 avis vérifiés <span style="color:#22c55e;">✓</span></p>
+        <div class="review-card">
+            <div style="display:flex;justify-content:center;gap:4px;color:var(--gold);font-size:14px;margin-bottom:6px;" id="current-review-stars"></div>
+            <p class="review-quote" id="review-comment"></p>
+            <p class="review-author" id="review-author"></p>
+            <img id="review-prod-thumb" src="" alt="" class="review-thumb">
+            <button class="review-nav-btn review-nav-prev" onclick="prevReview()"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="review-nav-btn review-nav-next" onclick="nextReview()"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="main-footer" style="display:none;">
+    <div class="footer-grid">
+        <div>
+            <p class="footer-title">Menu</p>
+            <button class="footer-link" onclick="showHomePage()">Accueil</button>
+            <button class="footer-link" onclick="toggleSearch()">Recherche</button>
+            <button class="footer-link" onclick="openLegalModal('mentions')">Mentions Légales</button>
+            <button class="footer-link" onclick="openLegalModal('cgv')">CGV</button>
+        </div>
+        <div>
+            <p class="footer-title">Collections</p>
+            <button class="footer-link" onclick="filterCategory('chaussures')">Chaussures</button>
+            <button class="footer-link" onclick="filterCategory('vetements')">Vêtements</button>
+            <button class="footer-link" onclick="filterCategory('accessoires')">Accessoires</button>
+        </div>
+        <div>
+            <p class="footer-title">Newsletter</p>
+            <p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:14px;line-height:1.6;">Recevez nos offres exclusives et nouveautés.</p>
+            <div class="footer-email-wrap">
+                <input type="email" placeholder="Votre e-mail...">
+                <button onclick="alert('Merci pour votre inscription !')">OK</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copy">© 2025 AVRA LUXURY. Tous droits réservés.</div>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div id="cartSidebar">
+    <div class="cart-header">
+        <h3><i class="fa-solid fa-bag-shopping" style="margin-right:8px;color:var(--gold);"></i>Mon Panier</h3>
+        <button onclick="toggleCart()" style="background:none;border:none;color:rgba(255,255,255,0.6);font-size:20px;cursor:pointer;">&times;</button>
+    </div>
+    <div class="cart-body" id="cart-items-list"></div>
+    <div class="cart-footer">
+        <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#111;margin-bottom:8px;">
+            <span>SOUS-TOTAL</span>
+            <span id="cart-total-price">0,00€</span>
+        </div>
+        <p id="cart-multi-notice" style="display:none;font-size:11px;color:#d97706;background:#fef3c7;padding:10px;border-radius:6px;margin-bottom:8px;">
+            ⚠️ Redirection vers le paiement du 1er article. Revenez valider les suivants.
+        </p>
+        <button class="btn-checkout" id="checkout-main-btn" onclick="processCheckout()">
+            <i class="fa-solid fa-lock" style="margin-right:6px;"></i>Passer la commande
+        </button>
+        <p style="font-size:10px;color:#aaa;text-align:center;margin-top:8px;"><i class="fa-solid fa-shield-halved" style="color:var(--gold);margin-right:4px;"></i>Paiement sécurisé SSL — Stripe</p>
+    </div>
+</div>
+<div id="cartOverlay" onclick="toggleCart()"></div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+    <div class="modal-box" style="text-align:center;">
+        <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+        <div style="width:52px;height:52px;background:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+            <i class="fa-solid fa-user" style="color:var(--gold);font-size:20px;"></i>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:4px;">Espace Client</h3>
+        <p style="font-size:11px;color:#aaa;margin-bottom:22px;">Suivez vos commandes et livraisons</p>
+        <button onclick="simulateGoogleLogin()" style="width:100%;border:1.5px solid #e0e0e0;background:#fff;border-radius:10px;padding:12px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;font-size:13px;font-weight:500;color:#333;transition:background 0.2s;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5.04c1.65 0 3.13.57 4.3 1.69l3.21-3.21C17.55 1.7 15 1 12 1 7.37 1 3.4 3.67 1.48 7.57l3.77 2.92C6.14 7.04 8.84 5.04 12 5.04z"/><path fill="#4285F4" d="M23.45 12.27c0-.82-.07-1.61-.21-2.38H12v4.51h6.42c-.28 1.47-1.11 2.72-2.36 3.56l3.67 2.85c2.14-1.98 3.38-4.89 3.38-8.54z"/><path fill="#FBBC05" d="M5.25 14.65c-.25-.73-.39-1.51-.39-2.33s.14-1.6.39-2.33L1.48 7.57C.54 9.47 0 11.62 0 12s.54 2.53 1.48 4.43l3.77-2.92z"/><path fill="#34A562" d="M12 23c3.24 0 5.97-1.08 7.96-2.92l-3.67-2.85c-1.02.68-2.33 1.09-3.92 1.09-3.16 0-5.86-2-6.75-4.91L1.48 16.33C3.4 20.33 7.37 23 12 23z"/></svg>
+            Se connecter avec Google
+        </button>
+        <p style="font-size:10px;color:#ccc;margin-top:14px;">Connexion sécurisée via Google Accounts</p>
+    </div>
+</div>
+
+<!-- LEGAL MODAL -->
+<div class="modal-overlay" id="legalModal">
+    <div class="modal-box legal-modal-box">
+        <button class="modal-close" onclick="closeLegalModal()">&times;</button>
+        <h3 id="legalModalTitle" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--black);"></h3>
+        <div id="legalModalContent" class="legal-content"></div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
 <script>
-(function() {
-  const listeAvisPrets = [
-    { auteur: "Sarah M.", texte: "Livraison rapide et produit conforme, je recommande sans hésiter !" },
-    { auteur: "Thomas B.", texte: "Le service client est super réactif, et la qualité est vraiment au rendez-vous." },
-    { auteur: "Amandine L.", texte: "Franchement génial, j'en ai repris un deuxième pour offrir à un proche." },
-    { auteur: "Nicolas V.", texte: "Excellent rapport qualité/prix. Rien à redire, c'est parfait." },
-    { auteur: "Julie D.", texte: "Commande reçue en avance. Très bien emballé et conforme à la description." },
-    { auteur: "Kevin R.", texte: "Site très sérieux. J'avais une question et ils m'ont répondu en moins d'une heure." },
-    { auteur: "Émilie P.", texte: "Une super découverte, je passerai à nouveau commande très bientôt !" },
-    { auteur: "Maxime G.", texte: "Parfait, correspond exactement à ce que j'attendais. Je recommande." },
-    { auteur: "Laura T.", texte: "Très satisfaite de mon achat. Simple, efficace et de bonne qualité." },
-    { auteur: "Antoine F.", texte: "Expérience d'achat au top de A à Z. Vous pouvez y aller les yeux fermés." },
-    { auteur: "Manon S.", texte: "Rien à redire, traitement de commande hyper rapide." },
-    { auteur: "Guillaume L.", texte: "Conforme aux photos du site, la qualité est superbe." },
-    { auteur: "Chloé B.", texte: "Très bonne surprise au déballage, je suis ravie !" },
-    { auteur: "Alexandre D.", texte: "Un sans-faute. Je commanderai à nouveau sans hésiter." },
-    { auteur: "Camille M.", texte: "Service client au top, super agréable et efficace." },
-    { auteur: "Lucas G.", texte: "Produit robuste et finitions impeccables. 5 étoiles." },
-    { auteur: "Léa R.", texte: "Très contente, article conforme et arrivé bien protégé." },
-    { auteur: "Julien P.", texte: "Excellent suivi de livraison et produit parfait." },
-    { auteur: "Mathilde V.", texte: "Pratique, esthétique et de qualité. Entièrement satisfaite." },
-    { auteur: "Hugo C.", texte: "Achat validé ! C'est exactement ce qu'il me fallait." },
-    { auteur: "Emma F.", texte: "Je l'utilise tous les jours, c'est devenu un indispensable." },
-    { auteur: "Arthur N.", texte: "Rapport qualité-prix imbattable sur le marché actuellement." },
-    { auteur: "Océane G.", texte: "Une livraison rapide et soignée. Merci beaucoup !" },
-    { auteur: "Clément J.", texte: "Très pro, du passage de la commande à la réception." },
-    { auteur: "Inès K.", texte: "Je recommande ce site, le produit est conforme à mes attentes." },
-    { auteur: "Paul E.", texte: "Franchement bluffé par la qualité par rapport au prix." },
-    { auteur: "Clara H.", texte: "Une équipe à l'écoute et un produit vraiment top." },
-    { auteur: "Valentin M.", texte: "Délais respectés, emballage soigné, produit nickel." },
-    { auteur: "Jeanne W.", texte: "Très simple d'utilisation, correspond à la description." },
-    { auteur: "Louis T.", texte: "Une très bonne expérience globale, je recommande." },
-    { auteur: "Agathe P.", texte: "Très satisfaite de mon choix, aucun regret sur cet achat." },
-    { auteur: "Quentin R.", texte: "Le top du top. Expédition rapide et emballage solide." },
-    { auteur: "Marion D.", texte: "J'ai eu un coup de cœur pour ce modèle, pas déçue !" },
-    { auteur: "Romain L.", texte: "Fonctionne parfaitement, conforme en tous points." },
-    { auteur: "Alice S.", texte: "Superbe expérience, livraison très rapide." },
-    { auteur: "Florian B.", texte: "Qualité supérieure à ce que j'imaginais, bravo !" },
-    { auteur: "Lucie V.", texte: "Commande reçue ce matin, déjà adopté et testé !" },
-    { auteur: "Bastien F.", texte: "Efficace, rapide et conforme. Je valide à 100%." },
-    { auteur: "Noémie C.", texte: "Ravi de mon achat, je recommande ce vendeur." },
-    { auteur: "Théo G.", texte: "Un choix que je ne regrette pas, super utile au quotidien." },
-    { auteur: "Anaïs M.", texte: "Un grand merci au support pour leur réactivité." },
-    { auteur: "Maxence N.", texte: "Tout est parfait, de la commande à l'utilisation." },
-    { auteur: "Justine P.", texte: "Design sympa et produit de très bonne facture." },
-    { auteur: "Enzo D.", texte: "Livré en 48h, produit impeccable, rien à redire." },
-    { auteur: "Léna J.", texte: "Parfait pour offrir ou pour soi, super qualité." },
-    { auteur: "Mathieu T.", texte: "Simple et efficace, remplit parfaitement son rôle." },
-    { auteur: "Charlotte R.", texte: "Très bonne communication avec le marchand, rassurant." },
-    { auteur: "Simon B.", texte: "Je l'ai recommandé à mon entourage direct." },
-    { auteur: "Manal K.", texte: "Très agréable surprise, le produit est parfait." },
-    { auteur: "Loïc G.", texte: "Une valeur sûre, livraison et suivi impeccables." },
-    { auteur: "Eva S.", texte: "Exactement comme décrit. Très satisfaite." },
-    { auteur: "Corentin L.", texte: "Un achat intelligent, robuste et durable." },
-    { auteur: "Margaux D.", texte: "Rapport qualité-prix excellent, je recommande." },
-    { auteur: "Nathan P.", texte: "Facile à prendre en main, correspond à mes attentes." },
-    { auteur: "Zoe C.", texte: "Acheté suite aux recommandations, pas déçue !" },
-    { auteur: "Axel M.", texte: "Service impeccable et réactif, produit conforme." },
-    { auteur: "Lola F.", texte: "Reçu bien emballé, la qualité seems excellente." },
-    { auteur: "Baptiste V.", texte: "Pratique et conforme à ce qui est annoncé." },
-    { auteur: "Jade H.", texte: "Je repasserai commande sans aucune hésitation." },
-    { auteur: "Robin T.", texte: "Tout est conforme, la livraison a été rapide." },
-    { auteur: "Élisa B.", texte: "Parfait pour mon utilisation quotidienne. Je recommande." },
-    { auteur: "Thibault S.", texte: "Une très bonne boutique avec de bons produits." },
-    { auteur: "Morgane R.", texte: "Colis arrivé dans les temps et très bien protégé." },
-    { auteur: "Adrien C.", texte: "Très bon produit, conforme à la description du site." },
-    { auteur: "Lou M.", texte: "Une commande fluide et rapide, merci beaucoup !" },
-    { auteur: "Gabriel F.", texte: "Très satisfait de la qualité globale, je valide." }
-  ];
+// ─── DONNÉES PRODUITS ───────────────────────────────────────────────────────
+const productsData = {
+    pradaAmericasCup: { name: "Prada America's Cup - Black Leather", price: 169.99, img: "americas-cup-noir.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_5kQ6oH1mg3Zr2aR6or" },
+    b22Black: { name: "B22 Sneaker - Full Black", price: 179.99, img: "b22-noir.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_5kQ6oH1mg3Zr2aR6or" },
+    b30NoirBlanc: { name: "B30 Sneaker - Noir / Blanc", price: 189.99, img: "b30-noir-blanc.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_b30_example" },
+    lanvinCurb: { name: "Lanvin Curb - Blanc / Rouge", price: 189.99, img: "curb-blanc-rouge.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_curb_example" },
+    noctaHotStep: { name: "Nocta Hot Step 2 - Orange/Black", price: 154.99, img: "hot-step-2.jpg", category: "chaussures", sizes: [40,41,42,43,44], stripeUrl: "https://buy.stripe.com/test_hotstep" },
+    skateNoir: { name: "Skate Sneaker - Noir", price: 139.99, img: "skate-noir.jpg", category: "chaussures", sizes: [40,41,42,43,44], stripeUrl: "https://buy.stripe.com/test_skate" },
+    tnNoir: { name: "TN Requin Air - Full Black", price: 149.99, img: "tn-noir.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_00g14n3uo2Vn02J7sv" },
+    cRunner: { name: "C-Runner Technical", price: 179.99, img: "c-runner.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_crunner" },
+    claquettesCarreaux: { name: "Claquettes Motif Carreaux", price: 69.99, img: "claquettes-carreaux.jpg", category: "chaussures", sizes: [39,40,41,42,43,44], stripeUrl: "https://buy.stripe.com/test_5kQcN51mgbrT" },
+    tshirtEcriture: { name: "T-shirt Premium - Écriture", price: 44.99, img: "tshirt-écriture.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_aFa7sLc0UeE59Dj0hX" },
+    tshirtCrane: { name: "T-shirt Oversize Motif Crâne", price: 44.99, img: "tshirt-crane.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_crane" },
+    cargoGris: { name: "Pantalon Cargo Technique - Gris", price: 59.99, img: "cargo-gris.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_cargo" },
+    vesteZippee: { name: "Veste Zippée Luxury - Black", price: 74.99, img: "veste-zippee.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_veste" },
+    ensembleBleu: { name: "Ensemble Sportswear - Bleu Tech", price: 109.99, img: "ensemble-bleu.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_ens_bleu" },
+    braceletChaine: { name: "Bracelet Chaîne Métal", price: 44.99, img: "bracelet-chaine.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_bracelet_example" },
+    braceletCuirTresse: { name: "Bracelet Cuir Tressé Black", price: 39.99, img: "bracelet-cuir-tresse.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_tresse" },
+    braceletLvNoir: { name: "Bracelet LV - Noir Ébène", price: 49.99, img: "bracelet-lv-noir.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_lv_noir" },
+    braceletLvV: { name: "Bracelet LV Signature V", price: 49.99, img: "bracelet-lv-v.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_lv_v" },
+    bonnetDamier: { name: "Bonnet Motif Damier Luxury", price: 29.99, img: "bonnet-damier.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_damier" },
+    bonnetNoir: { name: "Bonnet Classique Noir", price: 24.99, img: "bonnet-noir.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_bonnet_noir" },
+    casquetteClassique: { name: "Casquette Classique Black", price: 29.99, img: "casquette-classique.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_casq_cl" },
+    casquetteDubai: { name: "Casquette Édition Dubai", price: 34.99, img: "casquette-dubai.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_dubai" },
+    textMonoBrillant: { name: "Casquette Monogramme Brillant", price: 39.99, img: "casquette-monogramme-brillant.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_brillant" },
+    casquettePlaque: { name: "Casquette Signature Plaque Metal", price: 34.99, img: "casquette-plaque.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_plaque" },
+    casquetteRose: { name: "Casquette Soft Rose", price: 29.99, img: "casquette-rose.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_rose" }
+};
 
-  function afficherAvis() {
-    const toast = document.getElementById('review-toast');
-    const elemAuteur = document.getElementById('review-author');
-    const elemTexte = document.getElementById('review-text');
+const reviewsData = [
+    { author: "Anonyme", comment: "Qualité exceptionnelle, finitions au top. Je suis bluffé par le rendu, rien à redire.", rating: 5, img: "b22-noir.jpg" },
+    { author: "Mahinur S.", comment: "Livraison ultra rapide, l'article correspond parfaitement à la description. Je recommande !", rating: 5, img: "curb-blanc-rouge.jpg" },
+    { author: "Amaya M.", comment: "Modèle de super bonne qualité. Packaging soigné et service au top. Je reviendrai.", rating: 5, img: "americas-cup-noir.jpg" }
+];
 
-    if (!toast || !elemAuteur || !elemTexte) return;
+// ─── STATE ──────────────────────────────────────────────────────────────────
+let cart = [];
+let currentReviewIndex = 0;
+let activeProductId = null;
+let selectedSize = null;
 
-    const avisAleatoire = listeAvisPrets[Math.floor(Math.random() * listeAvisPrets.length)];
+// ─── INIT ───────────────────────────────────────────────────────────────────
+window.onload = function() {
+    showHomePage();
+    renderGlobalStars();
+    updateReview();
+};
 
-    elemAuteur.textContent = avisAleatoire.auteur;
-    elemTexte.textContent = `"${avisAleatoire.texte}"`;
+// ─── HOME / CATALOGUE ────────────────────────────────────────────────────────
+function showHomePage() {
+    document.getElementById('homePage').style.display = '';
+    document.getElementById('productPage').style.display = 'none';
+    document.getElementById('catalogue-section').style.display = '';
+    document.getElementById('home-reviews').style.display = '';
+    document.getElementById('main-footer').style.display = '';
+    document.getElementById('back-home-box').style.display = 'none';
+    document.getElementById('catalogue-title').innerText = 'Tous Nos Produits';
+    renderProductsGrid(Object.keys(productsData));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-    toast.style.left = '20px';
+function filterCategory(cat) {
+    document.getElementById('homePage').style.display = 'none';
+    document.getElementById('productPage').style.display = 'none';
+    document.getElementById('catalogue-section').style.display = '';
+    document.getElementById('home-reviews').style.display = '';
+    document.getElementById('main-footer').style.display = '';
+    document.getElementById('back-home-box').style.display = '';
+    const titles = { chaussures: 'Nos Chaussures Premium', vetements: 'Nos Vêtements Premium', accessoires: 'Nos Accessoires Premium' };
+    document.getElementById('catalogue-title').innerText = titles[cat] || 'Produits';
+    const filtered = Object.keys(productsData).filter(k => productsData[k].category === cat);
+    renderProductsGrid(filtered);
+    window.scrollTo({ top: document.getElementById('catalogue-section').offsetTop - 80, behavior: 'smooth' });
+}
 
-    setTimeout(() => {
-      toast.style.left = '-400px';
-    }, 8000);
-  }
+function renderProductsGrid(keys) {
+    const grid = document.getElementById('products-grid');
+    grid.innerHTML = '';
+    if (!keys.length) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#aaa;font-size:13px;">Aucun produit trouvé.</div>';
+        return;
+    }
+    keys.forEach(key => {
+        const p = productsData[key];
+        grid.innerHTML += `
+            <div class="product-card" onclick="openProductPage('${key}')">
+                <div class="product-page-badge" style="position:absolute;top:10px;left:10px;background:var(--black);color:var(--gold);font-size:9px;font-weight:700;letter-spacing:0.12em;padding:3px 9px;text-transform:uppercase;border-radius:3px;z-index:1;">Premium</div>
+                <div class="product-img-wrap">
+                    <img src="${p.img}" alt="${p.name}" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <p class="product-name">${p.name}</p>
+                    <p class="product-price">${p.price.toFixed(2)}€</p>
+                    <button class="btn-buy" onclick="event.stopPropagation();openProductPage('${key}')">
+                        <i class="fa-solid fa-bag-shopping" style="margin-right:6px;"></i>Voir le produit
+                    </button>
+                </div>
+            </div>`;
+    });
+}
 
-  window.addEventListener('load', () => {
-    setTimeout(afficherAvis, 8000);
-    setInterval(afficherAvis, 300000); 
-  });
-})();
+// ─── PRODUCT PAGE ─────────────────────────────────────────────────────────────
+function openProductPage(productId) {
+    activeProductId = productId;
+    selectedSize = null;
+    const p = productsData[productId];
+
+    document.getElementById('homePage').style.display = 'none';
+    document.getElementById('catalogue-section').style.display = 'none';
+    document.getElementById('home-reviews').style.display = 'none';
+    document.getElementById('main-footer').style.display = 'none';
+    document.getElementById('productPage').style.display = '';
+
+    document.getElementById('pp-img').src = p.img;
+    document.getElementById('pp-img').alt = p.name;
+    document.getElementById('pp-name').innerText = p.name;
+    document.getElementById('pp-price').innerHTML = p.price.toFixed(2) + '€ <span>TTC</span>';
+    document.getElementById('pp-buy-link').href = p.stripeUrl;
+
+    const catLabels = { chaussures: '👟 Chaussures Premium', vetements: '👕 Vêtements', accessoires: '✨ Accessoires' };
+    document.getElementById('pp-category').innerText = catLabels[p.category] || p.category;
+
+    const sizeLabels = { chaussures: 'Pointure', vetements: 'Taille', accessoires: 'Option' };
+    document.getElementById('pp-size-label').innerText = sizeLabels[p.category] || 'Taille';
+
+    const sizesWrap = document.getElementById('pp-sizes');
+    sizesWrap.innerHTML = '';
+    p.sizes.forEach((s, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'size-btn' + (typeof s === 'string' && s.length > 3 ? ' text-size' : '');
+        btn.innerText = s;
+        if (i === 0) { btn.classList.add('selected'); selectedSize = s; }
+        btn.onclick = function() {
+            sizesWrap.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedSize = s;
+        };
+        sizesWrap.appendChild(btn);
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function closeProductPage() {
+    document.getElementById('productPage').style.display = 'none';
+    document.getElementById('catalogue-section').style.display = '';
+    document.getElementById('home-reviews').style.display = '';
+    document.getElementById('main-footer').style.display = '';
+    if (document.getElementById('back-home-box').style.display !== '') {
+        document.getElementById('homePage').style.display = 'none';
+    } else {
+        document.getElementById('homePage').style.display = '';
+    }
+    window.scrollTo({ top: document.getElementById('catalogue-section').offsetTop - 80, behavior: 'smooth' });
+}
+
+function addToCartFromPage() {
+    if (!activeProductId) return;
+    const p = productsData[activeProductId];
+    const existing = cart.find(i => i.id === activeProductId && i.size === selectedSize);
+    if (existing) {
+        existing.qty++;
+    } else {
+        cart.push({ id: activeProductId, name: p.name, price: p.price, img: p.img, size: selectedSize, qty: 1, stripeUrl: p.stripeUrl });
+    }
+    updateCartStats();
+    showToast('✓ Ajouté au panier');
+}
+
+// ─── CART ─────────────────────────────────────────────────────────────────────
+function toggleCart() {
+    const sidebar = document.getElementById('cartSidebar');
+    const overlay = document.getElementById('cartOverlay');
+    const isOpen = sidebar.classList.contains('open');
+    if (!isOpen) {
+        sidebar.classList.add('open');
+        overlay.classList.add('open');
+        renderCartItems();
+    } else {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('open');
+    }
+}
+
+function renderCartItems() {
+    const container = document.getElementById('cart-items-list');
+    if (!cart.length) {
+        container.innerHTML = '<p style="text-align:center;color:#aaa;font-size:12px;padding:40px 0;">Votre panier est vide.</p>';
+        return;
+    }
+    container.innerHTML = cart.map((item, i) => `
+        <div class="cart-item">
+            <div class="cart-item-img"><img src="${item.img}" alt="${item.name}"></div>
+            <div style="flex:1;min-width:0;">
+                <p class="cart-item-name" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.name}</p>
+                <p class="cart-item-size">Taille : ${item.size}</p>
+                <p class="cart-item-price">${(item.price * item.qty).toFixed(2)}€</p>
+            </div>
+            <div class="qty-ctrl">
+                <button onclick="changeQty(${i},-1)">−</button>
+                <span>${item.qty}</span>
+                <button onclick="changeQty(${i},1)">+</button>
+            </div>
+        </div>`).join('');
+}
+
+function changeQty(index, delta) {
+    cart[index].qty += delta;
+    if (cart[index].qty <= 0) cart.splice(index, 1);
+    updateCartStats();
+    renderCartItems();
+}
+
+function updateCartStats() {
+    const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+    const totalPrice = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    document.getElementById('cart-count-badge').innerText = totalQty;
+    document.getElementById('cart-total-price').innerText = totalPrice.toFixed(2) + '€';
+
+    const limit = 150;
+    const needed = limit - totalPrice;
+    if (needed > 0) {
+        document.getElementById('shipping-promo-text').innerHTML = `Plus que <strong>${needed.toFixed(2)}€</strong> pour la <strong>Livraison Gratuite</strong>`;
+        document.getElementById('shipping-bar').style.width = Math.min(100, (totalPrice / limit) * 100) + '%';
+    } else {
+        document.getElementById('shipping-promo-text').innerHTML = '<span style="color:#16a34a;font-weight:700;">🚚 Livraison Gratuite débloquée !</span>';
+        document.getElementById('shipping-bar').style.width = '100%';
+    }
+
+    const notice = document.getElementById('cart-multi-notice');
+    const btn = document.getElementById('checkout-main-btn');
+    if (cart.length > 1) {
+        notice.style.display = '';
+        btn.innerHTML = `<i class="fa-solid fa-lock" style="margin-right:6px;"></i>Payer l'article 1 : ${cart[0].name.slice(0, 22)}...`;
+    } else if (cart.length === 1) {
+        notice.style.display = 'none';
+        btn.innerHTML = `<i class="fa-solid fa-lock" style="margin-right:6px;"></i>Passer la commande`;
+    } else {
+        notice.style.display = 'none';
+        btn.innerHTML = 'Panier Vide';
+    }
+}
+
+function processCheckout() {
+    if (!cart.length) return;
+    window.open(cart[0].stripeUrl, '_blank');
+    cart.shift();
+    updateCartStats();
+    renderCartItems();
+}
+
+// ─── SEARCH ───────────────────────────────────────────────────────────────────
+function toggleSearch() {
+    const wrap = document.getElementById('searchWrap');
+    const icon = document.getElementById('searchToggleIcon');
+    const input = document.getElementById('searchInput');
+    if (wrap.style.display === 'none' || wrap.style.display === '') {
+        wrap.style.display = 'block';
+        icon.style.display = 'none';
+        input.style.display = 'block';
+        setTimeout(() => input.focus(), 50);
+    } else {
+        wrap.style.display = 'none';
+        icon.style.display = 'block';
+        input.value = '';
+    }
+}
+
+function searchProducts() {
+    const term = document.getElementById('searchInput').value.toLowerCase().trim();
+    const matching = Object.keys(productsData).filter(k => productsData[k].name.toLowerCase().includes(term));
+    document.getElementById('homePage').style.display = 'none';
+    document.getElementById('productPage').style.display = 'none';
+    document.getElementById('catalogue-section').style.display = '';
+    document.getElementById('home-reviews').style.display = '';
+    document.getElementById('main-footer').style.display = '';
+    document.getElementById('back-home-box').style.display = '';
+    document.getElementById('catalogue-title').innerText = 'Résultats de recherche';
+    renderProductsGrid(matching);
+}
+
+// ─── REVIEWS ──────────────────────────────────────────────────────────────────
+function renderGlobalStars() {
+    const c = document.getElementById('review-stars');
+    c.innerHTML = '';
+    for (let i = 0; i < 5; i++) c.innerHTML += '<i class="fa-solid fa-star"></i>';
+}
+
+function updateReview() {
+    const r = reviewsData[currentReviewIndex];
+    document.getElementById('review-comment').innerText = `"${r.comment}"`;
+    document.getElementById('review-author').innerText = '— ' + r.author;
+    document.getElementById('review-prod-thumb').src = r.img;
+    const stars = document.getElementById('current-review-stars');
+    stars.innerHTML = '';
+    for (let i = 0; i < 5; i++) {
+        stars.innerHTML += i < r.rating ? '<i class="fa-solid fa-star" style="color:var(--gold);"></i>' : '<i class="fa-regular fa-star" style="color:rgba(255,255,255,0.2);"></i>';
+    }
+}
+
+function nextReview() { currentReviewIndex = (currentReviewIndex + 1) % reviewsData.length; updateReview(); }
+function prevReview() { currentReviewIndex = (currentReviewIndex - 1 + reviewsData.length) % reviewsData.length; updateReview(); }
+
+// ─── MODALS ───────────────────────────────────────────────────────────────────
+function openLoginModal() {
+    document.getElementById('loginModal').classList.add('open');
+}
+function closeLoginModal() {
+    document.getElementById('loginModal').classList.remove('open');
+}
+function simulateGoogleLogin() {
+    closeLoginModal();
+    document.getElementById('user-icon').className = 'fa-solid fa-circle-user';
+    document.getElementById('user-icon').style.color = '#16a34a';
+    showToast('✓ Connexion réussie !');
+}
+
+function openLegalModal(type) {
+    const title = document.getElementById('legalModalTitle');
+    const content = document.getElementById('legalModalContent');
+    if (type === 'mentions') {
+        title.innerText = 'Mentions Légales';
+        content.innerHTML = `
+            <p class="section-title">1. Édition du site</p>
+            <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004, il est précisé aux utilisateurs du site <strong>AVRA LUXURY</strong> l'identité des différents intervenants :</p>
+            <p><strong>Propriétaire :</strong> AVRA LUXURY — Contact : avraluxury@gmail.com — Montpellier 34000, France.</p>
+            <p><strong>Statut :</strong> Micro-entreprise / Entrepreneur individuel (EI).</p>
+            <p class="section-title">2. Hébergement</p>
+            <p>Le site est hébergé par <strong>Vercel Inc.</strong>, 340 S Lemon Ave #4133 Walnut, CA 91789, USA.</p>
+            <p class="section-title">3. Propriété intellectuelle</p>
+            <p>AVRA LUXURY est propriétaire des droits de propriété intellectuelle sur tous les éléments du site. Toute reproduction sans autorisation est interdite.</p>
+            <p class="section-title">4. Limitations de responsabilité</p>
+            <p>AVRA LUXURY ne pourra être tenu responsable des dommages directs ou indirects causés lors de l'accès au site.</p>`;
+    } else if (type === 'cgv') {
+        title.innerText = 'Conditions Générales de Vente (CGV)';
+        content.innerHTML = `
+            <p class="section-title">1. Objet</p>
+            <p>Les présentes CGV définissent les relations contractuelles entre <strong>AVRA LUXURY</strong> et l'acheteur. L'achat implique une acceptation sans réserve des présentes conditions.</p>
+            <p class="section-title">2. Produits</p>
+            <p>Les produits proposés sont dans la limite des stocks disponibles. Les photographies sont les plus fidèles possibles mais n'engagent pas le Vendeur.</p>
+            <p class="section-title">3. Tarifs et Paiement</p>
+            <p>Les prix sont en Euros (€) TTC. Les paiements s'effectuent de manière sécurisée via <strong>Stripe</strong> (carte bancaire, CB, Visa, Mastercard).</p>
+            <p class="section-title">4. Livraison</p>
+            <p>Les livraisons sont réalisées à l'adresse indiquée. Les acheteurs bénéficient d'un <strong>délai de rétractation de 14 jours</strong> à compter de la livraison pour retour ou remboursement.</p>`;
+    }
+    document.getElementById('legalModal').classList.add('open');
+}
+function closeLegalModal() { document.getElementById('legalModal').classList.remove('open'); }
+
+// Close modal on overlay click
+document.getElementById('loginModal').addEventListener('click', function(e) { if (e.target === this) closeLoginModal(); });
+document.getElementById('legalModal').addEventListener('click', function(e) { if (e.target === this) closeLegalModal(); });
+
+// ─── MOBILE MENU ──────────────────────────────────────────────────────────────
+function openMobileMenu() {
+    const m = document.getElementById('mobileMenu');
+    m.classList.add('open');
+}
+function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+}
+function closeMobileMenuOnOverlay(e) {
+    if (e.target === document.getElementById('mobileMenu')) closeMobileMenu();
+}
+
+// ─── TOAST ────────────────────────────────────────────────────────────────────
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.innerText = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+}
 </script>
 </body>
 </html>
