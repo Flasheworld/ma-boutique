@@ -416,10 +416,10 @@
         }
         .btn-checkout:hover { background: var(--gold-dark); }
 
-        /* PRODUCT PAGE */
+        /* PRODUCT PAGE amélioré */
         #productPage {
             display: none;
-            background: #fff;
+            background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
             min-height: 60vh;
         }
         .product-page-inner {
@@ -434,7 +434,7 @@
             .product-page-inner { grid-template-columns: 1fr 1fr; gap: 56px; }
         }
         .product-page-img-wrap {
-            background: #f8f8f8;
+            background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
             border-radius: 16px;
             aspect-ratio: 1;
             display: flex;
@@ -442,8 +442,11 @@
             justify-content: center;
             padding: 32px;
             overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(201,168,76,0.12);
         }
-        .product-page-img-wrap img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+        .product-page-img-wrap img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; transition: transform 0.4s ease; }
+        .product-page-img-wrap:hover img { transform: scale(1.05); }
         .product-page-info { display: flex; flex-direction: column; justify-content: center; }
         .product-page-category { font-size: 10px; font-weight: 700; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
         .product-page-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 4vw, 38px); font-weight: 700; color: var(--black); line-height: 1.15; margin-bottom: 8px; }
@@ -640,14 +643,256 @@
             border-left: 3px solid var(--gold);
             white-space: nowrap;
         }
-        #toast.show { transform: translateX(-50%) translateY(0); }
+        /* =====================================================
+           ANIMATIONS & EFFETS PRO
+        ===================================================== */
+
+        /* Barre promo animée */
+        @keyframes promoScroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .promo-bar {
+            overflow: hidden;
+            position: relative;
+        }
+        #promo-bar-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: promoScroll 22s linear infinite;
+        }
+        #promo-bar-text:hover { animation-play-state: paused; }
+
+        /* Shimmer sur les images produits */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .product-img-wrap.loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s infinite;
+        }
+
+        /* Entrée des cartes produits en cascade */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .product-card {
+            animation: fadeInUp 0.45s ease both;
+        }
+        .product-card:nth-child(1) { animation-delay: 0s; }
+        .product-card:nth-child(2) { animation-delay: 0.07s; }
+        .product-card:nth-child(3) { animation-delay: 0.14s; }
+        .product-card:nth-child(4) { animation-delay: 0.21s; }
+        .product-card:nth-child(5) { animation-delay: 0.28s; }
+        .product-card:nth-child(6) { animation-delay: 0.35s; }
+        .product-card:nth-child(7) { animation-delay: 0.42s; }
+        .product-card:nth-child(8) { animation-delay: 0.49s; }
+
+        /* Glow doré sur hover des cards */
+        .product-card:hover {
+            box-shadow: 0 12px 40px rgba(201,168,76,0.18), 0 4px 16px rgba(0,0,0,0.1);
+            transform: translateY(-5px) scale(1.01);
+        }
+
+        /* Badge "NOUVEAU" animé */
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.5); }
+            50% { box-shadow: 0 0 0 6px rgba(201,168,76,0); }
+        }
+        .product-badge-new {
+            animation: badgePulse 2s infinite;
+        }
+
+        /* Hero parallax léger */
+        #home-hero {
+            transition: none;
+        }
+        .hero-title {
+            animation: fadeInUp 0.7s ease both;
+        }
+        .hero-sub {
+            animation: fadeInUp 0.7s 0.15s ease both;
+        }
+        .hero-badge {
+            animation: fadeInUp 0.7s 0.05s ease both;
+        }
+        .hero-code {
+            animation: fadeInUp 0.7s 0.25s ease both;
+        }
+
+        /* Bouton "Acheter" shimmer hover */
+        .btn-buy-now {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-buy-now::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-buy-now:hover::after {
+            left: 150%;
+        }
+
+        /* Compteur panier bounce */
+        @keyframes cartBounce {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.5); }
+            70% { transform: scale(0.85); }
+            100% { transform: scale(1); }
+        }
+        #cart-count-badge.bounce {
+            animation: cartBounce 0.4s ease;
+        }
+
+        /* Section page produit — slide depuis droite */
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .product-page-info {
+            animation: slideInRight 0.5s ease both;
+        }
+        .product-page-img-wrap {
+            animation: fadeInUp 0.5s ease both;
+        }
+
+        /* Indicateur stock pulsant amélioré */
+        .stock-dot {
+            box-shadow: 0 0 0 0 rgba(22,163,74,0.6);
+            animation: stockPulse 1.8s ease infinite;
+        }
+        @keyframes stockPulse {
+            0% { box-shadow: 0 0 0 0 rgba(22,163,74,0.6); transform: scale(1); }
+            60% { box-shadow: 0 0 0 8px rgba(22,163,74,0); transform: scale(1.15); }
+            100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); transform: scale(1); }
+        }
+
+        /* Collection cards — effet révélation */
+        .collection-card {
+            animation: fadeInUp 0.6s ease both;
+        }
+        .collection-card:nth-child(1) { animation-delay: 0s; }
+        .collection-card:nth-child(2) { animation-delay: 0.1s; }
+        .collection-card:nth-child(3) { animation-delay: 0.2s; }
+
+        /* Taille btn — micro animation select */
+        .size-btn {
+            transition: all 0.18s cubic-bezier(.4,0,.2,1);
+        }
+        .size-btn.selected {
+            transform: scale(1.05);
+        }
+
+        /* Footer — apparition douce */
+        footer {
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        /* Loading skeleton panier */
+        .cart-skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s infinite;
+            border-radius: 8px;
+            height: 64px;
+            margin-bottom: 12px;
+        }
+
+        /* Badge "SOLDES" sur les chaussures */
+        .badge-soldes {
+            background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+            color: #fff !important;
+        }
+
+        /* Livraison gratuite badge sur page produit */
+        .free-shipping-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            border: 1px solid #86efac;
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #15803d;
+            margin-bottom: 14px;
+            animation: fadeInUp 0.4s ease both;
+        }
+
+        /* Scroll top reveal */
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        #scroll-top-btn {
+            animation: floatUpDown 2.5s ease-in-out infinite;
+        }
+
+        /* Promo bar texte défilant */
+        .promo-bar {
+            cursor: default;
+        }
+
+        /* Paiement sécurisé — icônes animées */
+        .secure-icon {
+            transition: all 0.2s ease;
+        }
+        .secure-icon:hover {
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        /* Overlay panier gradient animé */
+        .cart-header {
+            background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 100%);
+        }
+
+        /* Toast amélioré */
+        #toast {
+            backdrop-filter: blur(10px);
+        }
+
+        /* Mobile floating cart button */
+        @media (max-width: 767px) {
+            #mobile-cart-fab {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 45;
+                width: 54px;
+                height: 54px;
+                background: var(--black);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 20px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+                cursor: pointer;
+                border: 2px solid var(--gold);
+                animation: floatUpDown 3s ease-in-out infinite;
+            }
+        }
+        @media (min-width: 768px) {
+            #mobile-cart-fab { display: none !important; }
+        }
     </style>
 </head>
 <body>
 
 <!-- PROMO BAR -->
-<div class="promo-bar">
-    ⚡ VENTE FLASH : <span>-10%</span> SUR TOUTE LA BOUTIQUE AVEC LE CODE <span>AVRA10</span> ⚡
+<div class="promo-bar" id="promo-bar-top">
+    <span id="promo-bar-text">⚡ VENTE FLASH : <span>-10%</span> SUR TOUTE LA BOUTIQUE AVEC LE CODE <span>AVRA10</span> — 🚚 <span>LIVRAISON GRATUITE</span> POUR VOTRE 1ÈRE COMMANDE ⚡</span>
 </div>
 
 <!-- SHIPPING BAR -->
@@ -711,6 +956,10 @@
             <div class="hero-title">AVRA <span>LUXURY</span></div>
             <div class="hero-sub">Édition Premium — Style & Élégance</div>
             <div class="hero-code">— 10% | CODE : AVRA10</div>
+            <div style="margin-top:14px;display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);border-radius:30px;padding:8px 20px;">
+                <span style="color:#22c55e;font-size:14px;">🚚</span>
+                <span style="font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.9);text-transform:uppercase;font-weight:700;">Livraison Gratuite — 1ère Commande</span>
+            </div>
         </div>
     </div>
 
@@ -759,9 +1008,24 @@
             <h1 class="product-page-name" id="pp-name"></h1>
             <p class="product-page-price" id="pp-price"></p>
 
+            <!-- DESCRIPTION PRODUIT -->
+            <div id="pp-description" style="margin-bottom:4px;"></div>
+
             <div class="stock-indicator">
                 <span class="stock-dot"></span>
                 En stock — Expédition sous 24-48h
+            </div>
+
+            <!-- BADGE LIVRAISON GRATUITE 1ÈRE COMMANDE -->
+            <div class="free-shipping-badge">
+                <i class="fa-solid fa-truck" style="font-size:13px;"></i>
+                🎁 Livraison GRATUITE sur votre 1ère commande
+            </div>
+
+            <!-- URGENCE - VISITEURS EN TEMPS RÉEL -->
+            <div id="pp-urgency" style="display:flex;align-items:center;gap:10px;background:#fff8f0;border:1px solid #fed7aa;border-radius:10px;padding:10px 14px;margin-bottom:16px;">
+                <span style="width:8px;height:8px;background:#f97316;border-radius:50%;display:inline-block;animation:pulse 1.2s infinite;flex-shrink:0;"></span>
+                <span id="pp-visitors" style="font-size:12px;color:#c2410c;font-weight:600;"></span>
             </div>
 
             <div>
@@ -771,8 +1035,9 @@
 
             <div class="trust-badges">
                 <div class="trust-badge"><i class="fa-solid fa-rotate-left"></i> Retour 14 jours</div>
-                <div class="trust-badge"><i class="fa-solid fa-truck"></i> Livraison offerte dès 150€</div>
+                <div class="trust-badge"><i class="fa-solid fa-truck" style="color:#16a34a;"></i> Livraison offerte 1ère cde</div>
                 <div class="trust-badge"><i class="fa-solid fa-medal"></i> Qualité Premium</div>
+                <div class="trust-badge"><i class="fa-solid fa-headset"></i> SAV 7j/7</div>
             </div>
 
             <button class="btn-add-cart" onclick="addToCartFromPage()">
@@ -793,8 +1058,21 @@
                     <span class="secure-icon mc">MASTERCARD</span>
                     <span class="secure-icon">CB</span>
                     <span class="secure-icon" style="color:#009cde;">PayPal</span>
+                    <span class="secure-icon" style="color:#333;font-size:8px;">APPLE<br>PAY</span>
+                    <span class="secure-icon" style="color:#333;font-size:8px;">GOOGLE<br>PAY</span>
                 </div>
-                <p style="font-size:10px;color:#aaa;margin-top:10px;"><i class="fa-solid fa-lock" style="color:var(--gold);margin-right:4px;"></i>Vos données sont protégées par cryptage SSL 256-bit</p>
+                <p style="font-size:10px;color:#aaa;margin-top:10px;"><i class="fa-solid fa-lock" style="color:var(--gold);margin-right:4px;"></i>Données protégées SSL 256-bit — Conforme PCI DSS</p>
+                <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+                    <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555;">
+                        <i class="fa-solid fa-rotate-left" style="color:var(--gold);"></i> Retour 14 jours
+                    </div>
+                    <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555;">
+                        <i class="fa-solid fa-truck" style="color:#16a34a;"></i> Livraison offerte 1ère commande
+                    </div>
+                    <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555;">
+                        <i class="fa-solid fa-headset" style="color:var(--gold);"></i> SAV 7j/7
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -857,6 +1135,29 @@
             <span>SOUS-TOTAL</span>
             <span id="cart-total-price">0,00€</span>
         </div>
+
+        <!-- CODE PROMO -->
+        <div id="promo-section" style="margin-bottom:12px;">
+            <div style="display:flex;gap:8px;">
+                <input type="text" id="promo-input" placeholder="Code promo (ex: AVRA10)" style="flex:1;border:1.5px solid #e0e0e0;border-radius:8px;padding:9px 12px;font-size:12px;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#C9A84C'" onblur="this.style.borderColor='#e0e0e0'">
+                <button onclick="applyPromoCode()" style="background:var(--black);color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:11px;font-weight:700;letter-spacing:0.1em;cursor:pointer;white-space:nowrap;transition:background 0.2s;" onmouseover="this.style.background='#C9A84C';this.style.color='#000'" onmouseout="this.style.background='#111';this.style.color='#fff'">APPLIQUER</button>
+            </div>
+            <div id="promo-msg" style="margin-top:6px;font-size:11px;display:none;"></div>
+            <div id="promo-discount-row" style="display:none;margin-top:8px;display:none;justify-content:space-between;font-size:12px;font-weight:600;color:#16a34a;padding:8px 10px;background:#f0fdf4;border-radius:8px;border:1px solid #bbf7d0;">
+                <span>🎉 Réduction AVRA10 (-10%)</span>
+                <span id="promo-discount-amount">-0,00€</span>
+            </div>
+            <div id="first-order-promo" style="margin-top:8px;display:flex;align-items:center;gap:8px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:8px 10px;">
+                <span style="font-size:16px;">🚚</span>
+                <span style="font-size:11px;color:#1d4ed8;font-weight:600;">Livraison offerte sur votre 1ère commande !</span>
+            </div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:800;color:#111;margin-bottom:12px;padding-top:10px;border-top:2px solid #f0f0f0;">
+            <span>TOTAL TTC</span>
+            <span id="cart-final-price">0,00€</span>
+        </div>
+
         <p id="cart-multi-notice" style="display:none;font-size:11px;color:#d97706;background:#fef3c7;padding:10px;border-radius:6px;margin-bottom:8px;">
             ⚠️ Redirection vers le paiement du 1er article. Revenez valider les suivants.
         </p>
@@ -897,34 +1198,45 @@
 <!-- TOAST -->
 <div id="toast"></div>
 
+<!-- MOBILE CART FAB -->
+<div id="mobile-cart-fab" onclick="toggleCart()">
+    <i class="fa-solid fa-bag-shopping"></i>
+    <span id="fab-badge" style="position:absolute;top:-4px;right:-4px;background:var(--gold);color:#000;font-size:9px;font-weight:800;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;">0</span>
+</div>
+
+<!-- SCROLL TO TOP -->
+<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="display:none;position:fixed;bottom:84px;right:20px;z-index:44;width:42px;height:42px;background:var(--gold);color:var(--black);border:none;border-radius:50%;font-size:16px;cursor:pointer;box-shadow:0 4px 16px rgba(201,168,76,0.4);transition:opacity 0.3s;">
+    <i class="fa-solid fa-chevron-up"></i>
+</button>
+
 <script>
 // ─── DONNÉES PRODUITS ───────────────────────────────────────────────────────
 const productsData = {
-    pradaAmericasCup: { name: "Prada America's Cup - Black Leather", price: 169.99, img: "americas-cup-noir.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_5kQ6oH1mg3Zr2aR6or" },
-    b22Black: { name: "B22 Sneaker - Full Black", price: 179.99, img: "b22-noir.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_5kQ6oH1mg3Zr2aR6or" },
-    b30NoirBlanc: { name: "B30 Sneaker - Noir / Blanc", price: 189.99, img: "b30-noir-blanc.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_b30_example" },
-    lanvinCurb: { name: "Lanvin Curb - Blanc / Rouge", price: 189.99, img: "curb-blanc-rouge.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_curb_example" },
-    noctaHotStep: { name: "Nocta Hot Step 2 - Orange/Black", price: 154.99, img: "hot-step-2.jpg", category: "chaussures", sizes: [40,41,42,43,44], stripeUrl: "https://buy.stripe.com/test_hotstep" },
-    skateNoir: { name: "Skate Sneaker - Noir", price: 139.99, img: "skate-noir.jpg", category: "chaussures", sizes: [40,41,42,43,44], stripeUrl: "https://buy.stripe.com/test_skate" },
-    tnNoir: { name: "TN Requin Air - Full Black", price: 149.99, img: "tn-noir.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_00g14n3uo2Vn02J7sv" },
-    cRunner: { name: "C-Runner Technical", price: 179.99, img: "c-runner.jpg", category: "chaussures", sizes: [40,41,42,43,44,45], stripeUrl: "https://buy.stripe.com/test_crunner" },
-    claquettesCarreaux: { name: "Claquettes Motif Carreaux", price: 69.99, img: "claquettes-carreaux.jpg", category: "chaussures", sizes: [39,40,41,42,43,44], stripeUrl: "https://buy.stripe.com/test_5kQcN51mgbrT" },
-    tshirtEcriture: { name: "T-shirt Premium - Écriture", price: 44.99, img: "tshirt-écriture.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_aFa7sLc0UeE59Dj0hX" },
-    tshirtCrane: { name: "T-shirt Oversize Motif Crâne", price: 44.99, img: "tshirt-crane.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_crane" },
-    cargoGris: { name: "Pantalon Cargo Technique - Gris", price: 59.99, img: "cargo-gris.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_cargo" },
-    vesteZippee: { name: "Veste Zippée Luxury - Black", price: 74.99, img: "veste-zippee.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_veste" },
-    ensembleBleu: { name: "Ensemble Sportswear - Bleu Tech", price: 109.99, img: "ensemble-bleu.jpg", category: "vetements", sizes: ["S","M","L","XL"], stripeUrl: "https://buy.stripe.com/test_ens_bleu" },
+    pradaAmericasCup: { name: "Prada America's Cup - Black Leather", price: 99.99, img: "americas-cup-noir.jpg", category: "chaussures", sizes: [36,37,38,39,40,41,42,43,44,45,46], stripeUrl: "https://buy.stripe.com/test_5kQ6oH1mg3Zr2aR6or" },
+    b22Black: { name: "B22 Sneaker - Full Black", price: 99.99, img: "b22-noir.jpg", category: "chaussures", sizes: [36,37,38,39,40,41,42,43,44,45,46], stripeUrl: "https://buy.stripe.com/test_5kQ6oH1mg3Zr2aR6or" },
+    b30NoirBlanc: { name: "B30 Sneaker - Noir / Blanc", price: 99.99, img: "b30-noir-blanc.jpg", category: "chaussures", sizes: [36,37,38,39,40,41,42,43,44,45,46], stripeUrl: "https://buy.stripe.com/test_b30_example" },
+    lanvinCurb: { name: "Lanvin Curb - Blanc / Rouge", price: 99.99, img: "curb-blanc-rouge.jpg", category: "chaussures", sizes: [36,37,38,39,40,41,42,43,44,45,46], stripeUrl: "https://buy.stripe.com/test_curb_example" },
+    noctaHotStep: { name: "Nocta Hot Step 2 - Orange/Black", price: 99.99, img: "hot-step-2.jpg", category: "chaussures", sizes: [36,37,38,39,40,41,42,43,44,45,46], stripeUrl: "https://buy.stripe.com/test_hotstep" },
+    skateNoir: { name: "Skate Sneaker - Noir", price: 99.99, img: "skate-noir.jpg", category: "chaussures", sizes: [36,37,38,39,40,41,42,43,44,45,46], stripeUrl: "https://buy.stripe.com/test_skate" },
+    tnNoir: { name: "TN Requin Air - Full Black", price: 99.99, img: "tn-noir.jpg", category: "chaussures", sizes: [36,37,38,39,40,41,42,43,44,45,46], stripeUrl: "https://buy.stripe.com/test_00g14n3uo2Vn02J7sv" },
+    cRunner: { name: "C-Runner Technical", price: 99.99, img: "c-runner.jpg", category: "chaussures", sizes: [36,37,38,39,40,41,42,43,44,45,46], stripeUrl: "https://buy.stripe.com/test_crunner" },
+    claquettesCarreaux: { name: "Claquettes Motif Carreaux", price: 50.00, img: "claquettes-carreaux.jpg", category: "chaussures", sizes: [36,37,38,39,40,41,42,43,44,45,46], stripeUrl: "https://buy.stripe.com/test_5kQcN51mgbrT" },
+    tshirtEcriture: { name: "T-shirt Premium - Écriture", price: 44.99, img: "tshirt-écriture.jpg", category: "vetements", sizes: ["XS","S","M","L","XL","XXL"], stripeUrl: "https://buy.stripe.com/test_aFa7sLc0UeE59Dj0hX" },
+    tshirtCrane: { name: "T-shirt Oversize Motif Crâne", price: 44.99, img: "tshirt-crane.jpg", category: "vetements", sizes: ["XS","S","M","L","XL","XXL"], stripeUrl: "https://buy.stripe.com/test_crane" },
+    cargoGris: { name: "Pantalon Cargo Technique - Gris", price: 59.99, img: "cargo-gris.jpg", category: "vetements", sizes: ["XS","S","M","L","XL","XXL"], stripeUrl: "https://buy.stripe.com/test_cargo" },
+    vesteZippee: { name: "Veste Zippée Luxury - Black", price: 74.99, img: "veste-zippee.jpg", category: "vetements", sizes: ["XS","S","M","L","XL","XXL"], stripeUrl: "https://buy.stripe.com/test_veste" },
+    ensembleBleu: { name: "Ensemble Sportswear - Bleu Tech", price: 109.99, img: "ensemble-bleu.jpg", category: "vetements", sizes: ["XS","S","M","L","XL","XXL"], stripeUrl: "https://buy.stripe.com/test_ens_bleu" },
     braceletChaine: { name: "Bracelet Chaîne Métal", price: 44.99, img: "bracelet-chaine.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_bracelet_example" },
     braceletCuirTresse: { name: "Bracelet Cuir Tressé Black", price: 39.99, img: "bracelet-cuir-tresse.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_tresse" },
     braceletLvNoir: { name: "Bracelet LV - Noir Ébène", price: 49.99, img: "bracelet-lv-noir.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_lv_noir" },
     braceletLvV: { name: "Bracelet LV Signature V", price: 49.99, img: "bracelet-lv-v.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_lv_v" },
     bonnetDamier: { name: "Bonnet Motif Damier Luxury", price: 29.99, img: "bonnet-damier.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_damier" },
     bonnetNoir: { name: "Bonnet Classique Noir", price: 24.99, img: "bonnet-noir.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_bonnet_noir" },
-    casquetteClassique: { name: "Casquette Classique Black", price: 29.99, img: "casquette-classique.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_casq_cl" },
-    casquetteDubai: { name: "Casquette Édition Dubai", price: 34.99, img: "casquette-dubai.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_dubai" },
-    textMonoBrillant: { name: "Casquette Monogramme Brillant", price: 39.99, img: "casquette-monogramme-brillant.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_brillant" },
-    casquettePlaque: { name: "Casquette Signature Plaque Metal", price: 34.99, img: "casquette-plaque.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_plaque" },
-    casquetteRose: { name: "Casquette Soft Rose", price: 29.99, img: "casquette-rose.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_rose" }
+    casquetteClassique: { name: "Casquette Classique Black", price: 25.00, img: "casquette-classique.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_casq_cl" },
+    casquetteDubai: { name: "Casquette Édition Dubai", price: 25.00, img: "casquette-dubai.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_dubai" },
+    textMonoBrillant: { name: "Casquette Monogramme Brillant", price: 25.00, img: "casquette-monogramme-brillant.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_brillant" },
+    casquettePlaque: { name: "Casquette Signature Plaque Metal", price: 25.00, img: "casquette-plaque.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_plaque" },
+    casquetteRose: { name: "Casquette Soft Rose", price: 25.00, img: "casquette-rose.jpg", category: "accessoires", sizes: ["Taille Unique"], stripeUrl: "https://buy.stripe.com/test_rose" }
 };
 
 const reviewsData = [
@@ -938,6 +1250,32 @@ let cart = [];
 let currentReviewIndex = 0;
 let activeProductId = null;
 let selectedSize = null;
+let activePromoCode = null;
+
+// ─── CODE PROMO ──────────────────────────────────────────────────────────────
+const promoCodes = {
+    'AVRA10': { discount: 0.10, label: '-10% sur toute la commande' },
+    'BIENVENUE': { discount: 0.10, label: '-10% offert — 1ère commande' }
+};
+
+function applyPromoCode() {
+    const input = document.getElementById('promo-input');
+    const msg = document.getElementById('promo-msg');
+    const code = input.value.trim().toUpperCase();
+    msg.style.display = 'block';
+    if (promoCodes[code]) {
+        activePromoCode = code;
+        msg.innerHTML = `<span style="color:#16a34a;font-weight:700;">✓ Code <strong>${code}</strong> appliqué — ${promoCodes[code].label}</span>`;
+        input.style.borderColor = '#16a34a';
+        updateCartStats();
+        showToast('✓ Code promo appliqué !');
+    } else {
+        activePromoCode = null;
+        msg.innerHTML = `<span style="color:#ef4444;font-weight:600;">✗ Code invalide. Essayez <strong>AVRA10</strong></span>`;
+        input.style.borderColor = '#ef4444';
+        updateCartStats();
+    }
+}
 
 // ─── INIT ───────────────────────────────────────────────────────────────────
 window.onload = function() {
@@ -982,9 +1320,14 @@ function renderProductsGrid(keys) {
     }
     keys.forEach(key => {
         const p = productsData[key];
+        const isClaquette = p.name.toLowerCase().includes('claquette');
+        const isCasquette = p.name.toLowerCase().includes('casquette');
+        const isSoldes = p.category === 'chaussures';
+        const badgeLabel = isClaquette ? '50€' : isCasquette ? '25€' : isSoldes ? 'PROMO' : 'Premium';
+        const badgeStyle = isSoldes ? 'background:#ef4444;color:#fff;' : 'background:var(--black);color:var(--gold);';
         grid.innerHTML += `
             <div class="product-card" onclick="openProductPage('${key}')">
-                <div class="product-page-badge" style="position:absolute;top:10px;left:10px;background:var(--black);color:var(--gold);font-size:9px;font-weight:700;letter-spacing:0.12em;padding:3px 9px;text-transform:uppercase;border-radius:3px;z-index:1;">Premium</div>
+                <div style="position:absolute;top:10px;left:10px;${badgeStyle}font-size:9px;font-weight:700;letter-spacing:0.12em;padding:3px 9px;text-transform:uppercase;border-radius:3px;z-index:1;">${badgeLabel}</div>
                 <div class="product-img-wrap">
                     <img src="${p.img}" alt="${p.name}" loading="lazy">
                 </div>
@@ -1014,7 +1357,25 @@ function openProductPage(productId) {
     document.getElementById('pp-img').src = p.img;
     document.getElementById('pp-img').alt = p.name;
     document.getElementById('pp-name').innerText = p.name;
-    document.getElementById('pp-price').innerHTML = p.price.toFixed(2) + '€ <span>TTC</span>';
+    // Calcul ancien prix (avant réduction) et affichage économie
+    const oldPrices = { chaussures: { normal: 169.99, claquette: 89.99 }, vetements: null, accessoires: { casquette: 39.99 } };
+    let oldPrice = null;
+    if (p.category === 'chaussures') {
+        oldPrice = p.name.toLowerCase().includes('claquette') ? 89.99 : 169.99;
+    } else if (p.category === 'accessoires' && p.name.toLowerCase().includes('casquette')) {
+        oldPrice = 39.99;
+    }
+    if (oldPrice && oldPrice > p.price) {
+        const saved = (oldPrice - p.price).toFixed(2);
+        const pct = Math.round(((oldPrice - p.price) / oldPrice) * 100);
+        document.getElementById('pp-price').innerHTML = `
+            <span style="font-size:22px;font-weight:800;color:var(--black);">${p.price.toFixed(2)}€</span>
+            <span style="font-size:14px;color:#aaa;text-decoration:line-through;margin-left:10px;">${oldPrice.toFixed(2)}€</span>
+            <span style="margin-left:10px;background:#ef4444;color:#fff;font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;">-${pct}%</span>
+            <div style="margin-top:6px;font-size:12px;color:#16a34a;font-weight:700;">✓ Vous économisez ${saved}€ !</div>`;
+    } else {
+        document.getElementById('pp-price').innerHTML = p.price.toFixed(2) + '€ <span style="font-size:13px;font-weight:400;color:#888;">TTC</span>';
+    }
     document.getElementById('pp-buy-link').href = p.stripeUrl;
 
     const catLabels = { chaussures: '👟 Chaussures Premium', vetements: '👕 Vêtements', accessoires: '✨ Accessoires' };
@@ -1022,6 +1383,33 @@ function openProductPage(productId) {
 
     const sizeLabels = { chaussures: 'Pointure', vetements: 'Taille', accessoires: 'Option' };
     document.getElementById('pp-size-label').innerText = sizeLabels[p.category] || 'Taille';
+
+    // Description dynamique
+    const descriptions = {
+        chaussures: `<p style="font-size:13px;color:#555;line-height:1.8;margin-bottom:16px;">Conçues avec des matériaux premium sélectionnés, ces chaussures allient style et confort exceptionnel. Finitions soignées, semelle renforcée et tige respirante pour un confort optimal toute la journée.</p>
+        <ul style="font-size:12px;color:#666;line-height:2;list-style:none;padding:0;margin-bottom:16px;">
+          <li>✓ Matériaux premium sélectionnés</li>
+          <li>✓ Semelle anti-dérapante renforcée</li>
+          <li>✓ Confort haute performance</li>
+          <li>✓ Tailles disponibles : 36 → 46</li>
+        </ul>`,
+        vetements: `<p style="font-size:13px;color:#555;line-height:1.8;margin-bottom:16px;">Pièce de confection premium, taillée dans des matières nobles pour une coupe moderne et un confort maximal. Coutures renforcées et coupe ajustée pour un style impeccable.</p>
+        <ul style="font-size:12px;color:#666;line-height:2;list-style:none;padding:0;margin-bottom:16px;">
+          <li>✓ Tissu premium haute qualité</li>
+          <li>✓ Coupe moderne et ajustée</li>
+          <li>✓ Coutures renforcées</li>
+          <li>✓ Guide des tailles disponible</li>
+        </ul>`,
+        accessoires: `<p style="font-size:13px;color:#555;line-height:1.8;margin-bottom:16px;">Accessoire de luxe confectionné avec soin, alliant élégance et durabilité. La pièce idéale pour compléter votre look avec une touche premium et distinctive.</p>
+        <ul style="font-size:12px;color:#666;line-height:2;list-style:none;padding:0;margin-bottom:16px;">
+          <li>✓ Matériaux premium durables</li>
+          <li>✓ Finitions haute couture</li>
+          <li>✓ Packaging luxe inclus</li>
+          <li>✓ Livraison sécurisée</li>
+        </ul>`
+    };
+    const descEl = document.getElementById('pp-description');
+    if (descEl) descEl.innerHTML = descriptions[p.category] || '';
 
     const sizesWrap = document.getElementById('pp-sizes');
     sizesWrap.innerHTML = '';
@@ -1039,6 +1427,16 @@ function openProductPage(productId) {
     });
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Compteur visiteurs en temps réel (social proof)
+    const visitors = Math.floor(Math.random() * 18) + 4;
+    const vpEl = document.getElementById('pp-visitors');
+    if (vpEl) vpEl.innerText = `👁 ${visitors} personnes regardent ce produit en ce moment`;
+    clearInterval(window._visitorTimer);
+    window._visitorTimer = setInterval(() => {
+        const v2 = Math.floor(Math.random() * 18) + 4;
+        if (vpEl) vpEl.innerText = `👁 ${v2} personnes regardent ce produit en ce moment`;
+    }, 12000);
 }
 
 function closeProductPage() {
@@ -1116,6 +1514,21 @@ function updateCartStats() {
     const totalPrice = cart.reduce((s, i) => s + i.price * i.qty, 0);
     document.getElementById('cart-count-badge').innerText = totalQty;
     document.getElementById('cart-total-price').innerText = totalPrice.toFixed(2) + '€';
+
+    // Appliquer la réduction si code actif
+    let finalPrice = totalPrice;
+    const discountRow = document.getElementById('promo-discount-row');
+    const discountAmount = document.getElementById('promo-discount-amount');
+    if (activePromoCode === 'AVRA10' && totalPrice > 0) {
+        const discount = totalPrice * 0.10;
+        finalPrice = totalPrice - discount;
+        discountRow.style.display = 'flex';
+        discountAmount.innerText = '-' + discount.toFixed(2) + '€';
+    } else {
+        discountRow.style.display = 'none';
+    }
+    const finalEl = document.getElementById('cart-final-price');
+    if (finalEl) finalEl.innerText = finalPrice.toFixed(2) + '€';
 
     const limit = 150;
     const needed = limit - totalPrice;
@@ -1270,6 +1683,39 @@ function showToast(msg) {
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2800);
 }
+
+// ─── SCROLL TOP BUTTON ────────────────────────────────────────────────────────
+window.addEventListener('scroll', function() {
+    const btn = document.getElementById('scroll-top-btn');
+    if (window.scrollY > 300) {
+        btn.style.display = 'flex';
+        btn.style.alignItems = 'center';
+        btn.style.justifyContent = 'center';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+
+// ─── SYNC FAB MOBILE BADGE ────────────────────────────────────────────────────
+function syncFabBadge() {
+    const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+    const fab = document.getElementById('fab-badge');
+    if (fab) fab.innerText = totalQty;
+}
+
+// Patch addToCartFromPage pour syncer le FAB
+const _origAddToCart = addToCartFromPage;
+window.addToCartFromPage = function() {
+    _origAddToCart();
+    syncFabBadge();
+    // Bounce animation sur badge
+    const badge = document.getElementById('cart-count-badge');
+    badge.classList.remove('bounce');
+    void badge.offsetWidth;
+    badge.classList.add('bounce');
+    setTimeout(() => badge.classList.remove('bounce'), 400);
+};
+
 </script>
 </body>
 </html>
