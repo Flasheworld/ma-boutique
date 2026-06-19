@@ -1353,7 +1353,11 @@ function renderProductsGrid(keys) {
 }
 
 // ─── PRODUCT PAGE ─────────────────────────────────────────────────────────────
-function openProductPage(productId) {
+<!-- Exemple pour un produit -->
+<button onclick="openProductModal('Nom du produit', '99', 'image.jpg')">
+    Voir le produit
+</button>
+    function openProductPage(productId) {
     activeProductId = productId;
     selectedSize = null;
     const p = productsData[productId];
@@ -1726,6 +1730,35 @@ window.addToCartFromPage = function() {
     setTimeout(() => badge.classList.remove('bounce'), 400);
 };
 
+// Ajoutez ces fonctions dans votre bloc <script> existant
+let currentSelectedProduct = null;
+let selectedSize = null;
+
+function openProductModal(name, price, img) {
+    currentSelectedProduct = { name, price, img };
+    document.getElementById('modalImg').src = img;
+    document.getElementById('modalName').innerText = name;
+    document.getElementById('modalPrice').innerText = price + " €";
+    
+    const sizeContainer = document.getElementById('sizeOptions');
+    sizeContainer.innerHTML = '';
+    [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46].forEach(size => {
+        const btn = document.createElement('button');
+        btn.innerText = size;
+        btn.className = "border px-3 py-2 rounded hover:bg-black hover:text-white transition";
+        btn.onclick = () => {
+            selectedSize = size;
+            document.querySelectorAll('#sizeOptions button').forEach(b => b.style.background = '#fff');
+            btn.style.background = '#C9A84C'; // Couleur Gold
+        };
+        sizeContainer.appendChild(btn);
+    });
+    document.getElementById('productModal').classList.remove('hidden');
+}
+
+function closeProductModal() {
+    document.getElementById('productModal').classList.add('hidden');
+}
 </script>
 </body>
     <div id="productModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
