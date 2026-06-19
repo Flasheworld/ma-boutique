@@ -896,7 +896,10 @@
         @media (min-width: 768px) {
             #mobile-cart-fab { display: none !important; }
         }
-    </style>
+    .force-visible {
+    display: flex !important; /* !important force l'affichage malgré les autres règles */
+}
+	</style>
 </head>
 <body>
 
@@ -1730,34 +1733,25 @@ window.addToCartFromPage = function() {
     setTimeout(() => badge.classList.remove('bounce'), 400);
 };
 
-// Ajoutez ces fonctions dans votre bloc <script> existant
-let currentSelectedProduct = null;
-let selectedSize = null;
-
 function openProductModal(name, price, img) {
-    currentSelectedProduct = { name, price, img };
+    const modal = document.getElementById('productModal');
+    
+    // Remplissage des données...
     document.getElementById('modalImg').src = img;
     document.getElementById('modalName').innerText = name;
     document.getElementById('modalPrice').innerText = price + " €";
     
-    const sizeContainer = document.getElementById('sizeOptions');
-    sizeContainer.innerHTML = '';
-    [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46].forEach(size => {
-        const btn = document.createElement('button');
-        btn.innerText = size;
-        btn.className = "border px-3 py-2 rounded hover:bg-black hover:text-white transition";
-        btn.onclick = () => {
-            selectedSize = size;
-            document.querySelectorAll('#sizeOptions button').forEach(b => b.style.background = '#fff');
-            btn.style.background = '#C9A84C'; // Couleur Gold
-        };
-        sizeContainer.appendChild(btn);
-    });
-    document.getElementById('productModal').classList.remove('hidden');
+    // Force l'affichage en supprimant 'hidden' et ajoutant 'force-visible'
+    modal.classList.remove('hidden');
+    modal.classList.add('force-visible');
+    
+    console.log("Tentative d'ouverture de la modale...");
 }
 
 function closeProductModal() {
-    document.getElementById('productModal').classList.add('hidden');
+    const modal = document.getElementById('productModal');
+    modal.classList.remove('force-visible');
+    modal.classList.add('hidden');
 }
 </script>
 </body>
