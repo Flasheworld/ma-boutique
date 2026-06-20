@@ -2,18 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma Boutique</title>
-    
-    <!-- Ajout du favicon -->
-    <link rel="icon" type="image/jpeg" href="favicon.jpg">
-    
-    <!-- Vos autres liens CSS ou scripts -->
-</head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>AVRA LUXURY | Boutique Officielle</title>
-    <!-- FAVICON INTÉGRÉ ICI -->
     <link rel="icon" type="image/png" href="favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -896,10 +886,7 @@
         @media (min-width: 768px) {
             #mobile-cart-fab { display: none !important; }
         }
-    .force-visible {
-    display: flex !important; /* !important force l'affichage malgré les autres règles */
-}
-	</style>
+    </style>
 </head>
 <body>
 
@@ -1356,11 +1343,7 @@ function renderProductsGrid(keys) {
 }
 
 // ─── PRODUCT PAGE ─────────────────────────────────────────────────────────────
-<!-- Exemple pour un produit -->
-<button onclick="openProductModal('Nom du produit', '99', 'image.jpg')">
-    Voir le produit
-</button>
-    function openProductPage(productId) {
+function openProductPage(productId) {
     activeProductId = productId;
     selectedSize = null;
     const p = productsData[productId];
@@ -1733,48 +1716,6 @@ window.addToCartFromPage = function() {
     setTimeout(() => badge.classList.remove('bounce'), 400);
 };
 
-function openProductModal(name, price, img) {
-    const modal = document.getElementById('productModal');
-    
-    // Remplissage des données...
-    document.getElementById('modalImg').src = img;
-    document.getElementById('modalName').innerText = name;
-    document.getElementById('modalPrice').innerText = price + " €";
-    
-    // Force l'affichage en supprimant 'hidden' et ajoutant 'force-visible'
-    modal.classList.remove('hidden');
-    modal.classList.add('force-visible');
-    
-    console.log("Tentative d'ouverture de la modale...");
-}
-
-function closeProductModal() {
-    const modal = document.getElementById('productModal');
-    modal.classList.remove('force-visible');
-    modal.classList.add('hidden');
-}
 </script>
 </body>
-    <div id="productModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
-    <div id="modalOverlay" class="absolute inset-0 bg-black/70" onclick="closeProductModal()"></div>
-    <div class="bg-white rounded-2xl w-full max-w-2xl p-6 relative z-10">
-        <button class="absolute top-4 right-4 text-2xl" onclick="closeProductModal()">&times;</button>
-        <div class="grid md:grid-cols-2 gap-8">
-            <img id="modalImg" src="" alt="" class="w-full h-80 object-cover rounded-xl">
-            <div>
-                <h2 id="modalName" class="text-2xl font-bold mb-2"></h2>
-                <p id="modalPrice" class="text-xl text-yellow-600 font-bold mb-4"></p>
-                
-                <div class="mb-4">
-                    <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Choisir une taille :</p>
-                    <div id="sizeOptions" class="flex gap-2"></div>
-                </div>
-
-                <button onclick="addToCartFromModal()" class="w-full bg-black text-white py-3 rounded-lg uppercase tracking-widest text-xs font-bold">
-                    Ajouter au panier
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 </html>
